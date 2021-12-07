@@ -3,6 +3,7 @@ package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.
 
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.Pylon;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
 
 
@@ -14,6 +15,7 @@ public abstract class Building extends Construction {
     private float electricityProduction;
     private List<Resource> input;
     private List<Resource> output;
+    private Pylon pylonLink;
 
     public Building(float pollution, float electricityProduction, Point position){
         super(position);
@@ -21,6 +23,7 @@ public abstract class Building extends Construction {
         this.electricityProduction = electricityProduction;
         this.input = new ArrayList<>();
         this.output = new ArrayList<>();
+        this.pylonLink = null;
     }
 
     protected float getPollution() {
@@ -53,5 +56,9 @@ public abstract class Building extends Construction {
 
     protected void setOutput(List<Resource> output) {
         this.output = output;
+    }
+
+    public void setPylonLink(Pylon pylonLink) {
+        this.pylonLink = pylonLink;
     }
 }

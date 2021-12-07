@@ -5,7 +5,6 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.building.Building;
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.Connector;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.ElectricalNetwork;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.Pylon;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Inventory;
@@ -28,7 +27,7 @@ public class Map {
 
     private Inventory inventory;
 
-    public Map(int mapWidth, int mapHeight){
+    public Map(int mapWidth, int mapHeight, boolean debug){
         this.inventory = new Inventory();
         this.electricalNetworks = new ArrayList<>();
         this.mapWidth = mapWidth;
@@ -36,7 +35,7 @@ public class Map {
         this.casesTable = new Plot[this.mapWidth][this.mapHeight];
         for (int i = 0; i < this.mapHeight; i++) {
             for (int j = 0; j < this.mapWidth; j++) {
-                this.casesTable[j][i] = new Plot(new Point(j, i));
+                this.casesTable[j][i] = new Plot(new Point(j, i), debug);
             }
         }
     }
@@ -66,45 +65,47 @@ public class Map {
         return value.toString();
     }
 
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
+    }
+
+    public Plot getCasesTable(int i, int j) {
+        return this.casesTable[i][j];
+    }
+
     public void build(Point position, ConstructionType constructionType) {
         this.casesTable[position.getX()][position.getY()].build(constructionType);
+        this.updateMap();
         this.update();
     }
 
     public void update(){
-        for (int i = 0; i < this.mapWidth; i++) {
-            for (int j = 0; j < this.mapHeight; j++) {
-                this.casesTable[i][j].update();
+        for (int i = 0; i < this.mapHeight; i++) {
+            for (int j = 0; j < this.mapWidth; j++) {
+                this.casesTable[j][i].update();
             }
         }
+
     }
 
-    private void updateElectricalNetwork(){
-        for (int i = 0; i < this.mapWidth; i++) {
-            for (int j = 0; j < this.mapHeight; j++) {
-                Construction construction = this.casesTable[i][j].getConstruction();
-                if (construction.getClass() == Pylon.class){
-                    Connector connector = (Connector) construction;
-                    for (int k = 0; k < this.mapWidth; k++) {
-                        for (int l = 0; l < this.mapHeight; l++) {
-                            Construction otherConstruction = this.casesTable[k][l].getConstruction();
-                            if (otherConstruction.getClass() == Pylon.class && Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l,2)) <= 4){
-                                connector.addConnectorNeighbours((Connector) otherConstruction);
-                            }
-                            if (otherConstruction.getClass() == Building.class && Math.sqrt(Math.pow(i-k, 2) + Math.pow(j-l,2)) < 2){
-                               connector.addBuildingNeighbours((Building) otherConstruction);
-                            }
-
-
-                        }
-                    }
-                }
+    public void updateMap(){
+        for (int i = 0; i < this.mapHeight; i++) {
+            for (int j = 0; j < this.mapWidth; j++) {
+                this.casesTable[j][i].updateNeighbour(this);
             }
         }
+        this.electricalNetworks = ElectricalNetwork.updateNetwork(this);
     }
+
+
 
     public Resource destroyConstruction(Point position){
         Resource resource = this.casesTable[position.getX()][position.getY()].destroy();
+        this.updateMap();
         this.update();
         return  resource;
     }
