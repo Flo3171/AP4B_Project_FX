@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.Controller.MainMenu">
+   <children>
+      <Button fx:id="btclic" mnemonicParsing="false" onAction="#launch" prefHeight="61.0" prefWidth="146.0" text="Play" />
+      <Label fx:id="lab" alignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btclic1" mnemonicParsing="false" onAction="#quit" prefHeight="61.0" prefWidth="146.0" text="Quit" />
+   </children>
+</VBox>
