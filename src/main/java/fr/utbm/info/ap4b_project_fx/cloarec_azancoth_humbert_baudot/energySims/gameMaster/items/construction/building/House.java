@@ -8,15 +8,10 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 
 public class House extends Building{
 
-    private final int inhabitant;
 
     public House(Point position){
-        super(2, 1, position);
-        this.setConstructionType(ConstructionType.HOUSE);
-        this.inhabitant = 4;
-        this.getInput().add(new Resource(2, ResourceType.WATER));
-        this.getOutput().add(new Resource(10, ResourceType.EUROS));
-        this.getOutput().add(new Resource(2,  ResourceType.SATISFACTION));
+        super(ConstructionType.HOUSE, position);
+
     }
 
 

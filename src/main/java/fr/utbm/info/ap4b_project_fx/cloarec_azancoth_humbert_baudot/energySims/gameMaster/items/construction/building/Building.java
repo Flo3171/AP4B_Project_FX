@@ -3,59 +3,41 @@ package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.
 
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.Pylon;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
 
 
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Building extends Construction {
-    private float pollution;
-    private float electricityProduction;
-    private List<Resource> input;
-    private List<Resource> output;
+public class Building extends Construction {
+
+    private final ConstructionType type;
     private Pylon pylonLink;
 
-    public Building(float pollution, float electricityProduction, Point position){
-        super(position);
-        this.pollution = pollution;
-        this.electricityProduction = electricityProduction;
-        this.input = new ArrayList<>();
-        this.output = new ArrayList<>();
-        this.pylonLink = null;
+    private static final BuildingParameterMap parameterMap = new BuildingParameterMap();
+
+    public Building(ConstructionType type, Point position) {
+        super(position, type);
+        this.type = type;
+        BuildingParameter buildingParameter = parameterMap.getParameter(type);
     }
 
-    protected float getPollution() {
-        return pollution;
+    @Override
+    public void build(Point position) {
+
     }
 
-    protected void setPollution(float pollution) {
-        this.pollution = pollution;
+    @Override
+    public void update() {
+
     }
 
-    protected float getElectricityProduction() {
-        return electricityProduction;
-    }
-
-    protected void setElectricityProduction(float electricityProduction) {
-        this.electricityProduction = electricityProduction;
-    }
-
-    protected List<Resource> getInput() {
-        return input;
-    }
-
-    protected void setInput(List<Resource> input) {
-        this.input = input;
-    }
-
-    protected List<Resource> getOutput() {
-        return output;
-    }
-
-    protected void setOutput(List<Resource> output) {
-        this.output = output;
+    @Override
+    public Resource destroy() {
+        return null;
     }
 
     public void setPylonLink(Pylon pylonLink) {

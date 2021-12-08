@@ -8,8 +8,8 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class GazPlant extends Building{
 
     public GazPlant(Point position) {
-        super(8, 10, position);
-        this.setConstructionType(ConstructionType.GAZ_PLANT);
+        super(ConstructionType.GAZ_PLANT, position);
+
     }
 
     @Override

@@ -9,8 +9,8 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class CoalPlant extends Building{
 
     public CoalPlant(Point position) {
-        super(10, 10, position);
-        this.setConstructionType(ConstructionType.COAL_PLANT);
+        super(ConstructionType.COAL_PLANT, position);
+
     }
 
     @Override

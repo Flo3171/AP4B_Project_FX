@@ -17,10 +17,9 @@ public class Pylon extends Construction {
     private List<Building> buildingNeighbours;
 
     public Pylon(Point position){
-        super(position);
+        super(position, ConstructionType.PYLON);
         this.pylonNeighbours = new ArrayList<>();
         this.buildingNeighbours = new ArrayList<>();
-        this.setConstructionType(ConstructionType.PYLON);
 
     }
 
@@ -32,8 +31,7 @@ public class Pylon extends Construction {
                 else if ((otherConstruction instanceof Pylon) && this.getPosition().dist(j, i) <= 4){
                     this.addPylonNeighbours((Pylon) otherConstruction);
                 }
-                else if ((otherConstruction instanceof Building) && this.getPosition().dist(j, i) < 2){
-                    Building building = (Building) otherConstruction;
+                else if ((otherConstruction instanceof Building building) && this.getPosition().dist(j, i) < 2){
                     this.addBuildingNeighbours(building);
                     building.setPylonLink(this);
 

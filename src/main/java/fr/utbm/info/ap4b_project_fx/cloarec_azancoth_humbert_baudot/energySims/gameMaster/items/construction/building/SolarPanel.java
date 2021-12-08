@@ -8,8 +8,7 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class SolarPanel extends Building{
 
     public SolarPanel(Point position) {
-        super(0, 3, position);
-        this.setConstructionType(ConstructionType.SOLAR_PANEL);
+        super(ConstructionType.SOLAR_PANEL, position);
     }
 
     @Override

@@ -7,8 +7,7 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 
 public class WindMill extends Building{
     public WindMill(Point position) {
-        super(0, 2, position);
-        this.setConstructionType(ConstructionType.WINDMILL);
+        super(ConstructionType.WINDMILL, position);
     }
 
     @Override

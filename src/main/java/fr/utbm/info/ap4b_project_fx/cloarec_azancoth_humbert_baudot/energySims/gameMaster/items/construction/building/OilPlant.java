@@ -8,8 +8,8 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class OilPlant extends Building{
 
     public OilPlant(Point position) {
-        super(8, 100, position);
-        this.setConstructionType(ConstructionType.OIL_PLANT);
+        super(ConstructionType.OIL_PLANT, position);
+
     }
 
     @Override

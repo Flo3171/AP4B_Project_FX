@@ -7,11 +7,11 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public abstract class Construction {
 
     private final Point position;
-
     private ConstructionType constructionType;
 
-    public Construction(Point position){
+    public Construction(Point position, ConstructionType constructionType){
         this.position = position;
+        this.constructionType = constructionType;
     }
 
     @Override
@@ -25,6 +25,10 @@ public abstract class Construction {
 
     public void setConstructionType(ConstructionType constructionType) {
         this.constructionType = constructionType;
+    }
+
+    public ConstructionType getConstructionType() {
+        return constructionType;
     }
 
     public abstract void build(Point position);

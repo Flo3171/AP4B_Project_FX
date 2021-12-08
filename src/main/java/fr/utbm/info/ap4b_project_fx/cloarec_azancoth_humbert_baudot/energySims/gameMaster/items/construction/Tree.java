@@ -8,8 +8,7 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class Tree extends Construction{
 
     public Tree(Point position){
-        super(position);
-        setConstructionType(ConstructionType.TREE);
+        super(position, ConstructionType.TREE);
     }
 
     @Override
