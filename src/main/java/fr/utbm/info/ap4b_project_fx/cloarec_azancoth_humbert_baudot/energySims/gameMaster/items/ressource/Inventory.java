@@ -27,4 +27,8 @@ public class Inventory {
     public boolean addResource(Resource resource){
         return this.resources[resource.getType().ordinal()].addResource(resource.getAmount());
     }
+
+    public boolean useResource(Resource resource){
+        return this.resources[resource.getType().ordinal()].addResource(- resource.getAmount());
+    }
 }

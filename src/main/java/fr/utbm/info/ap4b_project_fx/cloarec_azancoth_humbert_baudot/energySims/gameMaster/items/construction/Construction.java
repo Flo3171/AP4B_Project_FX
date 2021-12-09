@@ -8,10 +8,29 @@ public abstract class Construction {
 
     private final Point position;
     private ConstructionType constructionType;
+    private Resource constructionCost;
 
     public Construction(Point position, ConstructionType constructionType){
         this.position = position;
         this.constructionType = constructionType;
+    }
+
+    public Construction(Point position, ConstructionType constructionType, Resource constructionCost) {
+        this.position = position;
+        this.constructionType = constructionType;
+        this.constructionCost = constructionCost;
+    }
+
+    protected void setConstructionCost(Resource constructionCost) {
+        this.constructionCost = constructionCost;
+    }
+
+    public Resource getConstructionCost() {
+        return constructionCost;
+    }
+
+    public Resource getDestructionReward(){
+        return new Resource(this.constructionCost.getAmount()/2, this.constructionCost.getType());
     }
 
     @Override
@@ -31,10 +50,12 @@ public abstract class Construction {
         return constructionType;
     }
 
-    public abstract void build(Point position);
 
-    public abstract void update();
 
-    public abstract Resource destroy();
+    public abstract boolean build(Point position);
+
+    public abstract boolean update();
+
+    public abstract boolean destroy();
 
 }

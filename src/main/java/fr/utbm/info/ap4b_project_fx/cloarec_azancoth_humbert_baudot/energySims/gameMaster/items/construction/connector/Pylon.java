@@ -7,6 +7,7 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.building.Building;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.Map;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.ResourceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Pylon extends Construction {
     private List<Building> buildingNeighbours;
 
     public Pylon(Point position){
-        super(position, ConstructionType.PYLON);
+        super(position, ConstructionType.PYLON, new Resource(2, ResourceType.COPPER));
         this.pylonNeighbours = new ArrayList<>();
         this.buildingNeighbours = new ArrayList<>();
 
@@ -64,17 +65,17 @@ public class Pylon extends Construction {
     }
 
     @Override
-    public void build(Point position) {
-
+    public boolean build(Point position) {
+        return true;
     }
 
     @Override
-    public void update() {
-
+    public boolean update() {
+        return true;
     }
 
     @Override
-    public Resource destroy() {
-        return null;
+    public boolean destroy() {
+        return true;
     }
 }

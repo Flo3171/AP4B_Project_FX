@@ -5,17 +5,12 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.Pylon;
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
-
-
-import java.time.format.ResolverStyle;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Building extends Construction {
 
     private final ConstructionType type;
     private Pylon pylonLink;
+
 
     private static final BuildingParameterMap parameterMap = new BuildingParameterMap();
 
@@ -23,21 +18,22 @@ public class Building extends Construction {
         super(position, type);
         this.type = type;
         BuildingParameter buildingParameter = parameterMap.getParameter(type);
+        this.setConstructionCost(buildingParameter.getBuildingCost());
     }
 
     @Override
-    public void build(Point position) {
-
+    public boolean build(Point position) {
+        return true;
     }
 
     @Override
-    public void update() {
-
+    public boolean update() {
+        return true;
     }
 
     @Override
-    public Resource destroy() {
-        return null;
+    public boolean destroy() {
+        return true;
     }
 
     public void setPylonLink(Pylon pylonLink) {
