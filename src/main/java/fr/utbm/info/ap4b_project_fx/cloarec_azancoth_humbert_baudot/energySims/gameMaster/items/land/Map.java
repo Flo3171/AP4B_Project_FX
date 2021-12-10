@@ -77,8 +77,12 @@ public class Map {
         return this.casesTable[i][j];
     }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
+
     public void build(Point position, ConstructionType constructionType) {
-        this.casesTable[position.getX()][position.getY()].build(constructionType);
+        this.casesTable[position.getX()][position.getY()].build(constructionType, this.inventory);
         this.updateMap();
         this.update();
     }
@@ -103,11 +107,11 @@ public class Map {
 
 
 
-    public Resource destroyConstruction(Point position){
-        Resource resource = this.casesTable[position.getX()][position.getY()].destroy();
+    public boolean destroyConstruction(Point position){
+        boolean result = this.casesTable[position.getX()][position.getY()].destroy(this.inventory);
         this.updateMap();
         this.update();
-        return  resource;
+        return  result;
     }
 
 

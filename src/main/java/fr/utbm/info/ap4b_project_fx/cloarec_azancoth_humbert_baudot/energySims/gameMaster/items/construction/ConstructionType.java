@@ -4,6 +4,7 @@ public enum ConstructionType {
     TREE,
     PYLON,
     PIPE,
+    ROAD,
     HOUSE,
     NUCLEAR_PLANT,
     COAL_PLANT,
@@ -18,6 +19,7 @@ public enum ConstructionType {
             case TREE -> {return "Tr";}
             case PYLON -> {return "Py";}
             case PIPE -> {return  "Pi";}
+            case ROAD -> {return "Ro";}
             case HOUSE -> {return "Ho";}
             case NUCLEAR_PLANT -> {return "NP";}
             case COAL_PLANT -> {return "CP";}

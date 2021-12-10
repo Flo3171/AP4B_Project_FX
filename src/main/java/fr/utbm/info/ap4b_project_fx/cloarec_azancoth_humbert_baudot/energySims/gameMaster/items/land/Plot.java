@@ -4,9 +4,11 @@ package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Road;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Tree;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.building.*;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.Pylon;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Inventory;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.ResourceType;
 
@@ -123,41 +125,56 @@ public class Plot {
         return construction;
     }
 
-    public void build(ConstructionType constructionType){
-        switch (constructionType){
-            case TREE -> this.construction = new Tree(this.position);
-            case PYLON -> this.construction = new Pylon(this.position);
-            case HOUSE -> this.construction = new House(this.position);
-            case NUCLEAR_PLANT -> this.construction = new NuclearPlant(this.position);
-            case COAL_PLANT -> this.construction = new CoalPlant(this.position);
-            case GAZ_PLANT -> this.construction = new GazPlant(this.position);
-            case OIL_PLANT -> this.construction = new OilPlant(this.position);
-            case WINDMILL -> this.construction = new WindMill(this.position);
-            case SOLAR_PANEL -> this.construction = new SolarPanel(this.position);
+    public boolean build(ConstructionType constructionType, Inventory inventory){
+        if (this.buildable){
+            Construction newConstruction;
+            switch (constructionType){
+                case TREE -> newConstruction = new Tree(this.position);
+                case PYLON -> newConstruction = new Pylon(this.position);
+                case HOUSE -> newConstruction = new House(this.position);
+                case NUCLEAR_PLANT -> newConstruction = new NuclearPlant(this.position);
+                case COAL_PLANT -> newConstruction = new CoalPlant(this.position);
+                case GAZ_PLANT -> newConstruction = new GazPlant(this.position);
+                case OIL_PLANT -> newConstruction = new OilPlant(this.position);
+                case WINDMILL -> newConstruction = new WindMill(this.position);
+                case SOLAR_PANEL -> newConstruction = new SolarPanel(this.position);
+                default -> newConstruction = new Road((this.position));
 
+            }
+            if (inventory.useResource(newConstruction.getConstructionCost())){
+                this.construction = newConstruction;
+                this.buildable = false;
+                return true;
+            }
         }
-        this.buildable = false;
+        return false;
 
     }
 
-    void update(){
+    public void update(){
 
         if (this.construction != null) {
             this.construction.update();
         }
     }
 
-    void updateNeighbour(Map map){
+    public void updateNeighbour(Map map){
         if (this.construction != null && this.construction instanceof Pylon){
             ((Pylon) this.construction).updateNeighbours(map);
         }
     }
 
-    Resource destroy(){
-        Resource resource = this.construction.destroy();
-        this.buildable = true;
-        this.construction = null;
-        return resource;
+    public boolean destroy(Inventory inventory){
+
+        boolean result = this.construction.destroy();
+        if (result){
+            inventory.addResource(this.construction.getDestructionReward());
+            this.buildable = true;
+            this.construction = null;
+
+        }
+        return result;
+
     }
 
 
