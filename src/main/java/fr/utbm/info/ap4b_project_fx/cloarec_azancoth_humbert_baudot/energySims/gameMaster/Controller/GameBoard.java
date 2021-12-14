@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +19,7 @@ public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
 
     @FXML
-    private Button myButton;
+    private GridPane Grid;
 
     @FXML
     private Button ValidationButton;
@@ -42,13 +43,13 @@ public class GameBoard implements Initializable {
     private Button b5;
 
     @FXML
-    void Wake(MouseEvent event) {
+    void  Wake(MouseEvent event) {
         //vérifier ce qui peut être contruit sur cette case update la liste des contruction disponible dans le menu déroulant
         //COMMENT RECUPERER LES COORDONEES DE LA CASE
         //MARCHE PAS mais c'est pas loin, je pense
         String source2 = event.getPickResult().getIntersectedNode().getId();
         System.out.println("Id: " + source2);
-        Node node=getNode(myButton,source2);
+        Node node=getNode(Grid,source2);
         GridPane.getColumnIndex(node);
         GridPane.getRowIndex(node);
 
