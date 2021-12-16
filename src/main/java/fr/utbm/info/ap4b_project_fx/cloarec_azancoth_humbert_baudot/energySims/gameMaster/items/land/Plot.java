@@ -125,6 +125,12 @@ public class Plot {
         return construction;
     }
 
+    public PlotType getType() {
+        return type;
+    }
+
+
+
     public boolean build(ConstructionType constructionType, Inventory inventory){
         if (this.buildable){
             Construction newConstruction;
