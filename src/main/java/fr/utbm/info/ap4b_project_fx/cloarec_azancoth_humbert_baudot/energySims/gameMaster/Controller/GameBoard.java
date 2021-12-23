@@ -1,5 +1,6 @@
 package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.Controller;
 
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,17 +19,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType;
 import static fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType.*;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 
 public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
-    Map m = new Map(26, 14, false);
+
+
 
     @FXML
-    private GridPane Grid;
+    private GridPane Grid = new GridPane();
 
 
-   // @FXML
-    //private Label l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12;
 
     @FXML
     Button b1;
@@ -48,20 +49,15 @@ public class GameBoard implements Initializable {
 */
 
 //marche pas
-   public void mapDisplayer(Map m,GridPane G){
-        /*l1.setText("dirt");
-        l2.setText("clay");
-        l3.setText("grass");
-        l4.setText("sand");
-        l5.setText("stone");
-        l6.setText("water");
-        l7.setText("dryPLot");
-        l8.setText("OSKOURALED");*/
+   public void mapDisplayer(GridPane G){
         //cette ligne marche pas je sais pas pk
        //G.add(l1,0,0);
-       //l1.setVisible(true);
-   int w=m.getMapWidth();
-   int h=m.getMapHeight();
+       Point size=new Point("0,0");
+       size.setX(26);
+       size.setY(14);
+       Map m = new Map(size, false);
+   int w= size.getX();
+   int h = size.getY();
    for(int i=0;i<w;i++) {
        for (int j=0;j<h;j++){
            PlotType type=m.getCasesTable(i,j).getType();
@@ -69,34 +65,51 @@ public class GameBoard implements Initializable {
         switch (type) {
 
             case DIRT:
-                //Grid.add(l1,i,j); trouver comment afficher
+                Label l1=new Label();
+                l1.setText("dirt");
+                Grid.add(l1,i,j);
                 break;
 
             case CLAY:
-                //Grid.add(l2,i,j); ...
+                Label l2=new Label();
+                l2.setText("clay");
+                Grid.add(l2,i,j);
                 break;
 
             case GRASS:
-                //Grid.add(l3,i,j);
+                Label l3=new Label();
+                l3.setText("grass");
+                Grid.add(l3,i,j);
                 break;
 
             case SAND:
-                //Grid.add(l4,i,j);
+                Label l4=new Label();
+                l4.setText("sand");
+                Grid.add(l4,i,j);
                 break;
 
             case STONE:
-                //Grid.add(l5,i,j);
+                Label l5=new Label();
+                l5.setText("stone");
+                Grid.add(l5,i,j);
                 break;
 
             case WATER:
-                //Grid.add(l6,i,j);
+                Label l6=new Label();
+                l6.setText("water");
+                Grid.add(l6,i,j);
                 break;
 
             case DRY_PLOT:
-                //Grid.add(l7,i,j);
+                Label l7=new Label();
+                l7.setText("DRY_plot");
+                Grid.add(l7,i,j);
                 break;
 
-            default://Grid.add(l8,i,j);
+            default:
+                Label l8=new Label();
+                l8.setText("OSKOURALED");
+                Grid.add(l8,i,j);;
             }
        }
      }
@@ -105,10 +118,10 @@ public class GameBoard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mapDisplayer(m,Grid);
+        mapDisplayer(Grid);
         //l1.setVisible(true);
         //marche
-        Grid.setVisible(false);
+        //Grid.setVisible(false);
         //marche pas
         //Grid.add(b1,0,0);
     }
