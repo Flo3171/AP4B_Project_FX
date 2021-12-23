@@ -1,7 +1,6 @@
 package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land;
 
 
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.ResourceType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.ElectricalNetwork;
@@ -20,13 +19,13 @@ public class Map {
     private final Point mapSize;
     private final Inventory inventory;
 
-    private Plot[][] casesTable;
+    private final Plot[][] casesTable;
     private List<ElectricalNetwork> electricalNetworks;
 
 
     public Map(Point mapSize, boolean debug){
         this.inventory = new Inventory();
-        this.electricalNetworks = new ArrayList<>();
+
         this.mapSize = mapSize;
         this.casesTable = new Plot[this.mapSize.getX()][this.mapSize.getY()];
         for (int i = 0; i < this.mapSize.getY(); i++) {
@@ -34,12 +33,20 @@ public class Map {
                 this.casesTable[j][i] = new Plot(new Point(j, i), debug);
             }
         }
+        this.electricalNetworks = new ArrayList<>();
     }
 
     public Map(String fileName){
         List<String> fileContent = FileUsage.readFile(fileName);
         this.mapSize = new Point(fileContent.get(0));
         this.inventory = new Inventory(fileContent.get(1));
+        this.electricalNetworks = new ArrayList<>();
+        this.casesTable = new Plot[this.mapSize.getX()][this.mapSize.getY()];
+        for (int i = 0; i < this.mapSize.getY(); i++) {
+            for (int j = 0; j < this.mapSize.getX(); j++) {
+                this.casesTable[j][i] = new Plot(new Point(j, i), fileContent.get(i*this.mapSize.getX() + j + 2 ));
+            }
+        }
     }
 
     @Override
@@ -52,6 +59,7 @@ public class Map {
             value.append("\n ");
             for (int j = 0; j < this.mapSize.getX(); j++) {
                 value.append(this.casesTable[j][i].toString()).append(" ");
+                value.append("\n ");
             }
 
         }

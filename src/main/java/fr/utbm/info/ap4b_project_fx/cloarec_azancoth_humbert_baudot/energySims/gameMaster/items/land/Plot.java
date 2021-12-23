@@ -28,16 +28,14 @@ public class Plot {
     private final Resource undergroundResources;
 
     public Plot(Point position, boolean debug){
-
+        this.position = position;
         if (debug){
             this.type = PlotType.DIRT;
             this.buildable = true;
-            this.position = position;
             this.construction = null;
             this.undergroundResources = null;
         }
         else {
-            this.position = position;
             Random r = new Random();
             int pattern = r.nextInt((10));
             if (pattern <  9){
@@ -110,13 +108,24 @@ public class Plot {
 
     }
 
+    public Plot(Point position, String fileContent){
+        this.position = position;
+        String[] strings = fileContent.split(",");
+        this.type = PlotType.getPlotType(strings[0]);
+        this.buildable = Boolean.getBoolean(strings[1]);
+        this.construction = null;
+        build(ConstructionType.getConstructionType(strings[2]), null);
+        this.undergroundResources = new Resource(strings[3]);
+    }
+
+
     @Override
     public String toString() {
        String constructionString;
        if (this.construction != null){
            constructionString = this.construction.toString();
        }else {
-           constructionString = "";
+           constructionString = "null";
        }
 
        String undergroundResourcesString;
@@ -124,15 +133,19 @@ public class Plot {
            undergroundResourcesString = this.undergroundResources.toString();
 
        }
-       else undergroundResourcesString = "";
-        String value = this.type.toString() + "," +
+       else undergroundResourcesString = "null:0";
+
+       String plotTypeString;
+       if (this.type != null){
+           plotTypeString = this.type.toString();
+       }
+       else plotTypeString = "null";
+
+
+        return plotTypeString + "," +
                 this.buildable + "," +
                 constructionString + "," +
                 undergroundResourcesString;
-
-
-
-       return value;
 
     }
 
@@ -147,7 +160,9 @@ public class Plot {
 
 
     public boolean build(ConstructionType constructionType, Inventory inventory){
-        if (this.buildable){
+        if(constructionType == null){
+            return false;
+        } else if (inventory == null || this.buildable){
             Construction newConstruction;
             switch (constructionType){
                 case TREE -> newConstruction = new Tree(this.position);
@@ -162,7 +177,8 @@ public class Plot {
                 default -> newConstruction = new Road((this.position));
 
             }
-            if (inventory.useResource(newConstruction.getConstructionCost())){
+
+            if (inventory == null || inventory.useResource(newConstruction.getConstructionCost())){
                 this.construction = newConstruction;
                 this.buildable = false;
                 return true;

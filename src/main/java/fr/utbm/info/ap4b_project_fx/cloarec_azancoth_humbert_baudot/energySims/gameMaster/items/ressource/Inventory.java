@@ -20,7 +20,7 @@ public class Inventory {
         int i = 0;
         for (ResourceType t:
                 ResourceType.values()) {
-            this.resources[i] = new Resource(Integer.parseInt(split[i]), t);
+            this.resources[i] = new Resource(split[i]);
             i ++;
         }
 

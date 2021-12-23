@@ -23,4 +23,24 @@ public enum PlotType {
 
         return "UNKNOWN";
     }
+
+    public static PlotType getPlotType(String string){
+        if(string.equals(GRASS.toString())){
+            return GRASS;
+        } else if (string.equals(SAND.toString())){
+            return SAND;
+        } else if (string.equals(DIRT.toString())){
+            return DIRT;
+        } else if (string.equals(STONE.toString())){
+            return STONE;
+        } else if (string.equals(CLAY.toString())){
+            return CLAY;
+        }else if (string.equals(WATER.toString())){
+            return WATER;
+        } else if (string.equals(DRY_PLOT.toString())){
+            return DRY_PLOT;
+        } else {
+            return null;
+        }
+    }
 }

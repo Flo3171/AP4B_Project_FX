@@ -9,13 +9,24 @@ public class Resource {
         this.type = type;
     }
 
+    public Resource(String string){
+        String[] split = string.split(":");
+        this.type = ResourceType.getResourceType(split[0]);
+        this.amount = Double.parseDouble(split[1]);
+    }
+
     public double getAmount(){
         return this.amount;
     }
 
     @Override
     public String toString() {
-        return this.type.toString() + this.amount;
+        String typeString;
+        if (this.type != null){
+            typeString = this.type.toString();
+        }
+        else typeString = "null";
+        return typeString + ":" + this.amount;
     }
 
     public ResourceType getType(){
