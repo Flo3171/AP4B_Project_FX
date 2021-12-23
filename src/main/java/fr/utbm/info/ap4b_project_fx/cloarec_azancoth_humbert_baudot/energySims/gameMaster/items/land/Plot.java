@@ -1,7 +1,7 @@
 package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land;
 
 
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.Point;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Road;
@@ -25,7 +25,7 @@ public class Plot {
     private boolean buildable;
     private final Point position;
     private Construction construction;
-    private Resource undergroundResources;
+    private final Resource undergroundResources;
 
     public Plot(Point position, boolean debug){
 
@@ -112,12 +112,27 @@ public class Plot {
 
     @Override
     public String toString() {
-        if (this.construction != null) {
-            return construction.toString() ;
-        }
-        else {
-            return "XX";
-        }
+       String constructionString;
+       if (this.construction != null){
+           constructionString = this.construction.toString();
+       }else {
+           constructionString = "";
+       }
+
+       String undergroundResourcesString;
+       if (this.undergroundResources != null){
+           undergroundResourcesString = this.undergroundResources.toString();
+
+       }
+       else undergroundResourcesString = "";
+        String value = this.type.toString() + "," +
+                this.buildable + "," +
+                constructionString + "," +
+                undergroundResourcesString;
+
+
+
+       return value;
 
     }
 

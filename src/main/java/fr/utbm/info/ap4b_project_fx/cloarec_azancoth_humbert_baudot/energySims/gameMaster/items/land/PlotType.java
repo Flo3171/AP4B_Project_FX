@@ -7,6 +7,20 @@ public enum PlotType {
     STONE,
     CLAY,
     WATER,
-    DRY_PLOT
+    DRY_PLOT;
 
+    @Override
+    public String toString() {
+        switch (this){
+            case GRASS -> {return "GRASS";}
+            case SAND -> {return "SAND";}
+            case DIRT -> {return "DIRT";}
+            case STONE -> {return "STONE";}
+            case CLAY -> {return "CLAY";}
+            case WATER -> {return "WATER";}
+            case DRY_PLOT -> {return "DRY_PLOT";}
+        }
+
+        return "UNKNOWN";
+    }
 }

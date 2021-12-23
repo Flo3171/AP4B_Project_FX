@@ -2,7 +2,7 @@ package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.
 
 public class Inventory {
     
-    private Resource[] resources;
+    private final Resource[] resources;
     
     public Inventory(){
         this.resources = new Resource[ResourceType.values().length];
@@ -14,12 +14,24 @@ public class Inventory {
         }
     }
 
+    public Inventory(String string){
+        String[] split = string.split(",");
+        this.resources = new Resource[ResourceType.values().length];
+        int i = 0;
+        for (ResourceType t:
+                ResourceType.values()) {
+            this.resources[i] = new Resource(Integer.parseInt(split[i]), t);
+            i ++;
+        }
+
+    }
+
     @Override
     public String toString() {
         StringBuilder value = new StringBuilder();
-        for (Resource resource:
-             this.resources) {
-            value.append("\n\t").append(resource.toString());
+        value.append(resources[0].toString());
+        for (int i = 1; i < ResourceType.values().length; i++) {
+            value.append(",").append(resources[i].toString());
         }
         return value.toString();
     }

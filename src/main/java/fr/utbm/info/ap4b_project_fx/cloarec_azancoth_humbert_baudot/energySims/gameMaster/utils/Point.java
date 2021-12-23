@@ -1,4 +1,4 @@
-package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items;
+package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils;
 
 public class Point {
     private int x;
@@ -7,6 +7,12 @@ public class Point {
     public Point(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public Point(String string){
+        String[] split = string.split(",");
+        this.x = Integer.parseInt(split[0]);
+        this.y = Integer.parseInt(split[1]);
     }
 
     public int getX() {
@@ -27,9 +33,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" +
-                 x + ", " + y +
-                ')';
+        return x + "," + y;
     }
 
     public static double dist(int xA, int yA, int xB, int yB){

@@ -1,6 +1,6 @@
 package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster;
 
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.Point;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.Map;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
@@ -10,7 +10,7 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class Main {
 
     public static void main(String[] args) {
-        Map m = new Map(8, 5, true);
+        Map m = new Map(new Point(8, 5), true);
 
         m.getInventory().addResource(new Resource(100, ResourceType.WOOD));
         m.getInventory().addResource(new Resource(100, ResourceType.COPPER));
@@ -26,11 +26,13 @@ public class Main {
         m.build(new Point(1,2), ConstructionType.WINDMILL);
 
         m.build(new Point(7, 4), ConstructionType.ROAD);
-        System.out.println(m);
+        /*System.out.println(m);
 
         m.destroyConstruction(new Point(7,4));
 
-        System.out.println(m);
+        System.out.println(m);*/
+
+        m.saveInFile("save/gameSave");
 
 
 
