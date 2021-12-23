@@ -1,7 +1,7 @@
 package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector;
 
 
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.Point;
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.Construction;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.building.Building;
@@ -14,8 +14,8 @@ import java.util.List;
 
 public class Pylon extends Construction {
 
-    private List<Pylon> pylonNeighbours;
-    private List<Building> buildingNeighbours;
+    private final List<Pylon> pylonNeighbours;
+    private final List<Building> buildingNeighbours;
 
     public Pylon(Point position){
         super(position, ConstructionType.PYLON, new Resource(2, ResourceType.COPPER));
@@ -25,17 +25,18 @@ public class Pylon extends Construction {
     }
 
     public void updateNeighbours(Map map){
-        for (int i = 0; i < map.getMapHeight(); i++) {
-            for (int j = 0; j < map.getMapWidth(); j++) {
+        for (int i = 0; i < map.getMapSize().getY(); i++) {
+            for (int j = 0; j < map.getMapSize().getX(); j++) {
                 Construction otherConstruction = map.getCasesTable(j,i).getConstruction();
-                if (otherConstruction == null || otherConstruction == this ){}
-                else if ((otherConstruction instanceof Pylon) && this.getPosition().dist(j, i) <= 4){
-                    this.addPylonNeighbours((Pylon) otherConstruction);
-                }
-                else if ((otherConstruction instanceof Building building) && this.getPosition().dist(j, i) < 2){
-                    this.addBuildingNeighbours(building);
-                    building.setPylonLink(this);
+                if (otherConstruction != null && otherConstruction != this) {
+                    if ((otherConstruction instanceof Pylon) && this.getPosition().dist(j, i) <= 4){
+                        this.addPylonNeighbours((Pylon) otherConstruction);
+                    }
+                    else if ((otherConstruction instanceof Building building) && this.getPosition().dist(j, i) < 2){
+                        this.addBuildingNeighbours(building);
+                        building.setPylonLink(this);
 
+                    }
                 }
 
 

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ElectricalNetwork {
-    private List<Pylon> pylonList;
-    private List<Building> buildingList;
+    private final List<Pylon> pylonList;
+    private final List<Building> buildingList;
 
-    private double availableElectricity;
+    private final double availableElectricity;
 
     public ElectricalNetwork(){
         this.pylonList = new ArrayList<>();
@@ -38,11 +38,10 @@ public class ElectricalNetwork {
     public static List<ElectricalNetwork> updateNetwork(Map map){
         List<ElectricalNetwork> networkList = new ArrayList<>();
 
-        for (int i = 0; i < map.getMapHeight(); i++) {
-            for (int j = 0; j < map.getMapWidth(); j++) {
+        for (int i = 0; i < map.getMapSize().getY(); i++) {
+            for (int j = 0; j < map.getMapSize().getX(); j++) {
                 Construction currentConstruction = map.getCasesTable(j,i).getConstruction();
-                if (currentConstruction instanceof Pylon){
-                    Pylon currentPylon = (Pylon) currentConstruction;
+                if (currentConstruction instanceof Pylon currentPylon){
                     if (!isInNetwork(currentPylon, networkList)){
                         ElectricalNetwork network = new ElectricalNetwork();
                         network.addPylon(currentPylon);
@@ -76,8 +75,9 @@ public class ElectricalNetwork {
         boolean inNetwork = false;
         for (ElectricalNetwork network :
                 networkList) {
-            if (network.pylonList.contains(pylon)){
+            if (network.pylonList.contains(pylon)) {
                 inNetwork = true;
+                break;
             }
         }
         return inNetwork;

@@ -15,7 +15,7 @@ public class Resource {
 
     @Override
     public String toString() {
-        return this.type.toString() + " : " + this.amount;
+        return this.type.toString() + this.amount;
     }
 
     public ResourceType getType(){
