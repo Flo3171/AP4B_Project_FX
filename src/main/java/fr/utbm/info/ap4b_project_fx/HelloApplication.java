@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
 
         */
         Scene scene = new Scene(fxmlLoader.load());
-        //stage.setFullScreen(true);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
     }
