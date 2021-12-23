@@ -15,42 +15,10 @@
    <right>
       <VBox maxWidth="60.0" minWidth="60.0" prefHeight="550.0" prefWidth="60.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" text="B1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Golden Arrow" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" text="B1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Golden Arrow" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" text="B1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Golden Arrow" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" text="B1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Golden Arrow" size="24.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
+            <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
+            <Button layoutX="10.0" layoutY="210.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
          </children></VBox>
    </right>
    <bottom>
