@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -13,14 +14,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.Map;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.Main;
+
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType;
 import static fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType.*;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
+import javafx.stage.Screen;
 
 public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
@@ -28,12 +35,14 @@ public class GameBoard implements Initializable {
 
 
     @FXML
-    private GridPane Grid = new GridPane();
+    private GridPane Grid;
 
 
 
     @FXML
     Button b1;
+
+    String url = new File( "" ).getAbsolutePath();
 
     //sert a rien
   /*  @FXML
@@ -50,7 +59,11 @@ public class GameBoard implements Initializable {
 */
 
 //marche pas
-   public void mapDisplayer(GridPane G){
+
+   void mapDisplayer(){
+        double maxHeight = ((Grid.getMaxHeight())/14);
+        double maxWidth = ((Grid.getMaxWidth())/26);
+
         //cette ligne marche pas je sais pas pk
        //G.add(l1,0,0);
        Point size=new Point("0,0");
@@ -66,11 +79,10 @@ public class GameBoard implements Initializable {
         switch (type) {
 
             case DIRT:
-                ImageView img = new ImageView("I:\\Travail\\AP4B\\AP4B_Project_FX\\src\\main\\resources\\images\\dirt.JPG");
-                //img.fitHeightProperty().bind(Grid.maxHeightProperty());
-                //img.fitWidthProperty().bind(Grid.maxWidthProperty());
-                img.setFitHeight(60);
-                img.setFitWidth(60);
+                ImageView img = new ImageView(url+"\\src\\main\\resources\\images\\dirt.JPG");
+                img.setFitHeight(maxHeight);
+                img.setFitWidth(maxWidth);
+
                 Grid.add(img,i,j);
 
                 Label l1=new Label();
@@ -80,9 +92,9 @@ public class GameBoard implements Initializable {
 
             case CLAY:
 
-                ImageView img2 = new ImageView("I:\\Travail\\AP4B\\AP4B_Project_FX\\src\\main\\resources\\images\\clay.JPG");
-                img2.setFitHeight(60);
-                img2.setFitWidth(60);
+                ImageView img2 = new ImageView(url+"\\src\\main\\resources\\images\\clay.JPG");
+                img2.setFitHeight(maxHeight);
+                img2.setFitWidth(maxWidth);
                 Grid.add(img2,i,j);
 
 
@@ -95,9 +107,9 @@ public class GameBoard implements Initializable {
 
             case GRASS:
 
-                ImageView img3 = new ImageView("I:\\Travail\\AP4B\\AP4B_Project_FX\\src\\main\\resources\\images\\Grass.JPG");
-                img3.setFitHeight(60);
-                img3.setFitWidth(60);
+                ImageView img3 = new ImageView(url+"\\src\\main\\resources\\images\\Grass.jpg");
+                img3.setFitHeight(maxHeight);
+                img3.setFitWidth(maxWidth);
                 Grid.add(img3,i,j);
 
 
@@ -108,9 +120,9 @@ public class GameBoard implements Initializable {
                 break;
 
             case SAND:
-                ImageView img4 = new ImageView("I:\\Travail\\AP4B\\AP4B_Project_FX\\src\\main\\resources\\images\\sand.jpg");
-                img4.setFitHeight(60);
-                img4.setFitWidth(60);
+                ImageView img4 = new ImageView(url+"\\src\\main\\resources\\images\\sand.jpg");
+                img4.setFitHeight(maxHeight);
+                img4.setFitWidth(maxWidth);
                 Grid.add(img4,i,j);
 
 
@@ -121,9 +133,9 @@ public class GameBoard implements Initializable {
                 break;
 
             case STONE:
-                ImageView img5 = new ImageView("I:\\Travail\\AP4B\\AP4B_Project_FX\\src\\main\\resources\\images\\stone.jpg");
-                img5.setFitHeight(60);
-                img5.setFitWidth(60);
+                ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\stone.jpg");
+                img5.setFitHeight(maxHeight);
+                img5.setFitWidth(maxWidth);
                 Grid.add(img5,i,j);
 
 
@@ -135,9 +147,9 @@ public class GameBoard implements Initializable {
 
             case WATER:
 
-                ImageView img6 = new ImageView("I:\\Travail\\AP4B\\AP4B_Project_FX\\src\\main\\resources\\images\\water.jpg");
-                img6.setFitHeight(60);
-                img6.setFitWidth(60);
+                ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\water.jpg");
+                img6.setFitHeight(maxHeight);
+                img6.setFitWidth(maxWidth);
                 Grid.add(img6,i,j);
 
 
@@ -161,11 +173,19 @@ public class GameBoard implements Initializable {
        }
      }
    }
+   @FXML
+   void getGridSize(){
+       Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+       System.out.println(screenBounds.getHeight()+"  "+screenBounds.getWidth());
+       Grid.setMaxHeight(screenBounds.getHeight()-90);
+       Grid.setMaxWidth(screenBounds.getWidth()-60);
+   }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mapDisplayer(Grid);
+        getGridSize();
+        mapDisplayer();
         //l1.setVisible(true);
         //marche
         //Grid.setVisible(false);
