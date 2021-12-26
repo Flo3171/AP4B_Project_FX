@@ -80,7 +80,7 @@
       <HBox prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <GridPane fx:id="Grid" prefHeight="434.0" prefWidth="900.0" style="-fx-background-color: blue;">
+      <GridPane fx:id="Grid" disable="true" prefHeight="434.0" prefWidth="900.0" style="-fx-background-color: blue;">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />

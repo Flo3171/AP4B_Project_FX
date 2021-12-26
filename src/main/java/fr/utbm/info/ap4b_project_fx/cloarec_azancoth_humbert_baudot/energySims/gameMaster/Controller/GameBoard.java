@@ -4,29 +4,29 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
+
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.Map;
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.Main;
+
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType;
-import static fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType.*;
-import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import javafx.stage.Screen;
 
 public class GameBoard implements Initializable {
@@ -43,6 +43,16 @@ public class GameBoard implements Initializable {
     Button b1;
 
     String url = new File( "" ).getAbsolutePath();
+
+    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            Node source = (Node)e.getSource() ;
+            Integer colIndex = GridPane.getColumnIndex(source);
+            Integer rowIndex = GridPane.getRowIndex(source);
+            System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
+        }
+    };
 
     //sert a rien
   /*  @FXML
@@ -82,7 +92,7 @@ public class GameBoard implements Initializable {
                 ImageView img = new ImageView(url+"\\src\\main\\resources\\images\\dirt.JPG");
                 img.setFitHeight(maxHeight);
                 img.setFitWidth(maxWidth);
-
+                img.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img,i,j);
 
                 Label l1=new Label();
@@ -95,6 +105,7 @@ public class GameBoard implements Initializable {
                 ImageView img2 = new ImageView(url+"\\src\\main\\resources\\images\\clay.JPG");
                 img2.setFitHeight(maxHeight);
                 img2.setFitWidth(maxWidth);
+                img2.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img2,i,j);
 
 
@@ -110,6 +121,7 @@ public class GameBoard implements Initializable {
                 ImageView img3 = new ImageView(url+"\\src\\main\\resources\\images\\Grass.jpg");
                 img3.setFitHeight(maxHeight);
                 img3.setFitWidth(maxWidth);
+                img3.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img3,i,j);
 
 
@@ -123,6 +135,7 @@ public class GameBoard implements Initializable {
                 ImageView img4 = new ImageView(url+"\\src\\main\\resources\\images\\sand.jpg");
                 img4.setFitHeight(maxHeight);
                 img4.setFitWidth(maxWidth);
+                img4.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img4,i,j);
 
 
@@ -136,6 +149,7 @@ public class GameBoard implements Initializable {
                 ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\stone.jpg");
                 img5.setFitHeight(maxHeight);
                 img5.setFitWidth(maxWidth);
+                img5.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img5,i,j);
 
 
@@ -150,6 +164,7 @@ public class GameBoard implements Initializable {
                 ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\water.jpg");
                 img6.setFitHeight(maxHeight);
                 img6.setFitWidth(maxWidth);
+                img6.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img6,i,j);
 
 
@@ -173,17 +188,27 @@ public class GameBoard implements Initializable {
        }
      }
    }
-   @FXML
+
+    @FXML
    void getGridSize(){
        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-       System.out.println(screenBounds.getHeight()+"  "+screenBounds.getWidth());
        Grid.setMaxHeight(screenBounds.getHeight()-90);
        Grid.setMaxWidth(screenBounds.getWidth()-60);
    }
+    /*
+   @FXML
+   void test(){
+       //e.getEventType();
+       //System.out.println(e.getSource());
+       System.out.println(Grid.onMouseClickedProperty());
+   }*/
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         getGridSize();
         mapDisplayer();
         //l1.setVisible(true);
