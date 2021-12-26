@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
 
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 
-        Scene scene = new Scene(fxmlLoader.load(),screenBounds.getWidth(),screenBounds.getHeight());
+        Scene scene = new Scene(fxmlLoader.load(),screenBounds.getWidth(),screenBounds.getHeight()-120);
         stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();

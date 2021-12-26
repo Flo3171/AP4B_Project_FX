@@ -43,6 +43,8 @@ public class GameBoard implements Initializable {
     Button b1;
 
     String url = new File( "" ).getAbsolutePath();
+    double maxHeight ;
+    double maxWidth ;
 
     EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -71,8 +73,6 @@ public class GameBoard implements Initializable {
 //marche pas
 
    void mapDisplayer(){
-        double maxHeight = ((Grid.getMaxHeight())/14);
-        double maxWidth = ((Grid.getMaxWidth())/26);
 
         //cette ligne marche pas je sais pas pk
        //G.add(l1,0,0);
@@ -194,6 +194,8 @@ public class GameBoard implements Initializable {
        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
        Grid.setMaxHeight(screenBounds.getHeight()-90);
        Grid.setMaxWidth(screenBounds.getWidth()-60);
+        maxHeight = ((Grid.getMaxHeight())/14);
+        maxWidth = ((Grid.getMaxWidth())/26);
    }
     /*
    @FXML
