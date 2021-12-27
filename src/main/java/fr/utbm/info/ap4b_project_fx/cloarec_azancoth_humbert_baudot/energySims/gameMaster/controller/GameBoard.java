@@ -30,17 +30,15 @@ import javafx.stage.Screen;
 
 public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
-    Map m = new Map(new Point(26, 14), false);
+
+
 
     @FXML
     private GridPane Grid;
 
 
-   // @FXML
-    //private Label l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12;
 
     @FXML
-    Button b1;
 
     String url = new File( "" ).getAbsolutePath();
     double maxHeight ;
@@ -56,32 +54,13 @@ public class GameBoard implements Initializable {
         }
     };
 
-    //sert a rien
-  /*  @FXML
-    void  Wake(MouseEvent event) {
-        //vérifier ce qui peut être contruit sur cette case update la liste des contruction disponible dans le menu déroulant
-        //COMMENT RECUPERER LES COORDONEES DE LA CASE
-        //MARCHE PAS mais c'est pas loin, je pense
-        String source2 = event.getPickResult().getIntersectedNode().getId();
-        System.out.println("Id: " + source2);
-        Node node=getNode(Grid,source2);
-        GridPane.getColumnIndex(node);
-        GridPane.getRowIndex(node);
-    }
-*/
 
-//marche pas
 
-   void mapDisplayer(){
+   void mapDisplayer(Map m){
 
-        //cette ligne marche pas je sais pas pk
-       //G.add(l1,0,0);
-       Point size=new Point("0,0");
-       size.setX(26);
-       size.setY(14);
-       Map m = new Map(size, false);
-   int w= size.getX();
-   int h = size.getY();
+       Point g =m.getMapSize();
+       int w=g.getX();
+       int h = g.getY();
    for(int i=0;i<w;i++) {
        for (int j=0;j<h;j++){
            PlotType type=m.getCasesTable(i,j).getType();
@@ -212,12 +191,7 @@ public class GameBoard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         getGridSize();
-        mapDisplayer();
-        //l1.setVisible(true);
-        //marche
-        //Grid.setVisible(false);
-        //marche pas
-        //Grid.add(b1,0,0);
+
     }
 
    /* public Button witchSlot(Button btn){

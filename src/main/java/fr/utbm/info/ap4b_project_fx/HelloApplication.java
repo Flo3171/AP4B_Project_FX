@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GameBoard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MainMenu.fxml"));
         /*
         GridPane pane = new GridPane();
         ImageView img0 = new ImageView("C:\\Users\\carst\\Desktop\\cours\\UV\\A21\\AP4B\\AP4B_Project_FX\\src\\main\\java\\fr\\utbm\\info\\ap4b_project_fx\\cloarec_azancoth_humbert_baudot\\energySims\\gameMaster\\Controller\\clay.JPG");

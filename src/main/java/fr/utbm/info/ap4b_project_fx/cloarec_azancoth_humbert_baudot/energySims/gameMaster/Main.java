@@ -32,9 +32,9 @@ public class Main {
 
         System.out.println(m);*/
 
-        m.saveInFile("save/gameSave");
+        m.saveInFile("I:\\Travail\\broh\\aled.txt");
 
-        Map p = new Map("save/gameSave");
+        Map p = new Map("I:\\Travail\\broh\\aled.txt");
         System.out.println(p);
 
 
