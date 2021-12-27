@@ -1,6 +1,7 @@
 package fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land;
 
 
+import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.ressource.Resource;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.utils.Point;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.ConstructionType;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.construction.connector.ElectricalNetwork;
@@ -11,18 +12,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * class that represent the map of the game
+ * The class Map represents the map of the game, it contents all the Plot of the map, the inventory and the list of the electrical Networks
+ * We can build and destroy construction on a Map and update this
+ * We can generate a random map or get one from a file
+ * We can save a map in a file
+ * @see Plot
+ * @see Point
+ * @see Inventory
  *
  * @author Florian CLOAREC
+ * @version 1.0
  */
 public class Map {
+
+    /**
+     * The dimension in width and height of the casesTable
+     */
     private final Point mapSize;
+
+    /**
+     * The inventory of the player, so the list of all the Resource he had
+     * @see Resource
+     */
     private final Inventory inventory;
 
+    /**
+     * Double array where each element correspond to a Plot on the grid of the board
+     */
     private final Plot[][] casesTable;
+
+    /**
+     * List of all the ElectricalNetwork found on the map
+     */
     private List<ElectricalNetwork> electricalNetworks;
 
 
+    /**
+     * Constructor use to generate a new Map with random generation
+     * @param mapSize
+     *                  the width and the height of the Plot grind on the map
+     * @param debug
+     *                  set to True for a full grass and empty map
+     */
     public Map(Point mapSize, boolean debug){
         this.inventory = new Inventory();
 
@@ -36,6 +67,15 @@ public class Map {
         this.electricalNetworks = new ArrayList<>();
     }
 
+
+    /**
+     * Constructor use to build a map form a file
+     * the file must exist and have been created by the saveInFile method
+     * @param fileName
+     *                  the absolute or relative path to the file
+     *
+     * @see Map#saveInFile(String)
+     */
     public Map(String fileName){
         List<String> fileContent = FileUsage.readFile(fileName);
         this.mapSize = new Point(fileContent.get(0));
@@ -75,7 +115,12 @@ public class Map {
         return value.toString();
     }
 
-
+    /**
+     * Write the object Map in a file to persistent save
+     * @param filePath
+     *                  the absolute or relative path to the file where we want to save
+     * @see Map#Map(String)  Map
+     */
     public void saveInFile(String filePath){
         List<String> mapStringList = new ArrayList<>();
         mapStringList.add(this.mapSize.toString());
@@ -100,14 +145,28 @@ public class Map {
         return inventory;
     }
 
+    /**
+     * Build a new construction of the specified type in the specified position on the plot grid
+     * @param position
+     *                  the coordinate of the plot in the grid where we want to build the construction
+     * @param constructionType
+     *                  the type of the construction that we want to build
+     * @return
+     *                  True if all gone well
+     *                  False else
+     */
     public boolean build(Point position, ConstructionType constructionType) {
         boolean result = this.casesTable[position.getX()][position.getY()].build(constructionType, this.inventory);
-        this.updateMap();
+        this.updateNetwork();
         this.update();
         return result;
 
     }
 
+
+    /**
+     * update alle the plot on the grid
+     */
     public void update(){
         for (int i = 0; i < this.mapSize.getY(); i++) {
             for (int j = 0; j < this.mapSize.getX(); j++) {
@@ -117,7 +176,10 @@ public class Map {
 
     }
 
-    public void updateMap(){
+    /**
+     * update the network on the map by updating the neighbour of all the construction on the map and then update really the network
+     */
+    public void updateNetwork(){
         for (int i = 0; i < this.mapSize.getY(); i++) {
             for (int j = 0; j < this.mapSize.getX(); j++) {
                 this.casesTable[j][i].updateNeighbour(this);
@@ -127,10 +189,18 @@ public class Map {
     }
 
 
-
+    /**
+     * Destroy a construction on the map
+     * @param position
+     *                  the coordinate of the plot in the grid where we want to destroy the construction
+     * @return
+     *          True if all gone well
+     *          False else
+     *
+     */
     public boolean destroyConstruction(Point position){
         boolean result = this.casesTable[position.getX()][position.getY()].destroy(this.inventory);
-        this.updateMap();
+        this.updateNetwork();
         this.update();
         return  result;
     }

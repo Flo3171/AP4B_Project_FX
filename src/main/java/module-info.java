@@ -12,6 +12,6 @@ module fr.utbm.info.ap4b_project_fx {
 
     opens fr.utbm.info.ap4b_project_fx to javafx.fxml;
     exports fr.utbm.info.ap4b_project_fx;
-    exports fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.Controller;
-    opens fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.Controller to javafx.fxml;
+    exports fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.controller;
+    opens fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.controller to javafx.fxml;
 }
