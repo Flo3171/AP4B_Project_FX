@@ -40,7 +40,6 @@ public class GameBoard implements Initializable {
 
 
     @FXML
-    Button b1;
 
     String url = new File( "" ).getAbsolutePath();
     double maxHeight ;
@@ -55,8 +54,6 @@ public class GameBoard implements Initializable {
             System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
         }
     };
-
-   
 
 
 
@@ -195,7 +192,6 @@ public class GameBoard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         getGridSize();
-        //mapDisplayer();
 
     }
 

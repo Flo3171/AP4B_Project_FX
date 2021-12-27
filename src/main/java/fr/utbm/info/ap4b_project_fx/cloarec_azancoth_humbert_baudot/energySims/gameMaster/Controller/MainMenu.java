@@ -31,7 +31,6 @@ public class MainMenu {
     @FXML
     private String Path;
 
-
     @FXML
     void launch() {
         Point size=new Point("0,0");
