@@ -29,15 +29,18 @@ import java.util.ResourceBundle;
 import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType;
 import javafx.stage.Screen;
 
+import static fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.gameMaster.items.land.PlotType.*;
+
 public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
-
-
+    Map m = new Map(new Point(26, 14), false);
 
     @FXML
     private GridPane Grid;
 
 
+   // @FXML
+    //private Label l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12;
 
     @FXML
     Button b1;
