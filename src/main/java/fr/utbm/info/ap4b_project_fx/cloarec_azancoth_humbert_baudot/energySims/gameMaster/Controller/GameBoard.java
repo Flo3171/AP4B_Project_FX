@@ -33,10 +33,6 @@ public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
 
 
-    public GameBoard()
-    {
-        GridPane GridOne;
-    }
 
     @FXML
     private GridPane Grid;
@@ -60,6 +56,7 @@ public class GameBoard implements Initializable {
         }
     };
 
+   
 
 
 
@@ -182,7 +179,6 @@ public class GameBoard implements Initializable {
        Grid.setMaxWidth(screenBounds.getWidth()-60);
         maxHeight = ((Grid.getMaxHeight())/14);
         maxWidth = ((Grid.getMaxWidth())/26);
-        System.out.printf("Mouse entered cell [%d, %d]%n", 2, 3);
    }
     /*
    @FXML
