@@ -10,7 +10,7 @@ import fr.utbm.info.ap4b_project_fx.cloarec_azancoth_humbert_baudot.energySims.g
 public class Main {
 
     public static void main(String[] args) {
-        Map m = new Map(new Point(8, 5), false);
+        Map m = new Map(new Point(26, 14), false);
 
         m.getInventory().addResource(new Resource(100, ResourceType.WOOD));
         m.getInventory().addResource(new Resource(100, ResourceType.COPPER));
@@ -32,9 +32,9 @@ public class Main {
 
         System.out.println(m);*/
 
-        m.saveInFile("save/gameSave");
+        m.saveInFile("I:\\Travail\\broh\\aled.txt");
 
-        Map p = new Map("save/gameSave");
+        Map p = new Map("I:\\Travail\\broh\\aled.txt");
         System.out.println(p);
 
 
