@@ -12,7 +12,7 @@ public class ElectricalNetwork {
     private final List<Pylon> pylonList;
     private final List<Building> buildingList;
 
-    private final double availableElectricity;
+    private double availableElectricity;
 
     public ElectricalNetwork(){
         this.pylonList = new ArrayList<>();
@@ -57,6 +57,7 @@ public class ElectricalNetwork {
     private void addPylon(Pylon pylon) {
         if (!this.pylonList.contains(pylon)) {
             this.pylonList.add(pylon);
+            pylon.setNetwork(this);
             for (Building building :
                     pylon.getBuildingNeighbours()) {
                 this.addBuilding(building);
@@ -95,5 +96,13 @@ public class ElectricalNetwork {
                 this.addPylonNeighbours(neighbour);
             }
         }
+    }
+
+    public boolean addElectricity(double electricityAmount){
+        if(this.availableElectricity + electricityAmount >= 0){
+            this.availableElectricity += electricityAmount;
+            return true;
+        }
+        return false;
     }
 }

@@ -205,5 +205,13 @@ public class Map {
         return  result;
     }
 
+    public void close(){
+        for (int i = 0; i < this.mapSize.getY(); i++) {
+            for (int j = 0; j < this.mapSize.getX(); j++) {
+                this.casesTable[j][i].close();
+            }
+        }
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package fr.utbm.info.ap4b_project_fx;
+package fr.utbm.ap4b_project_fx.energySims;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

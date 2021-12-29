@@ -11,7 +11,6 @@ import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.ResourceType;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
 import fr.utbm.ap4b_project_fx.energySims.items.construction.Road;
-import fr.utbm.ap4b_project_fx.energySims.items.construction.building.*;
 
 import java.util.Random;
 
@@ -27,6 +26,7 @@ public class Plot {
     private final Point position;
     private Construction construction;
     private final Resource undergroundResources;
+    private Thread buildingThread;
 
     public Plot(Point position, boolean debug){
         this.position = position;
@@ -168,19 +168,23 @@ public class Plot {
             switch (constructionType){
                 case TREE -> newConstruction = new Tree(this.position);
                 case PYLON -> newConstruction = new Pylon(this.position);
-                case HOUSE -> newConstruction = new House(this.position);
-                case NUCLEAR_PLANT -> newConstruction = new NuclearPlant(this.position);
-                case COAL_PLANT -> newConstruction = new CoalPlant(this.position);
-                case GAZ_PLANT -> newConstruction = new GazPlant(this.position);
-                case OIL_PLANT -> newConstruction = new OilPlant(this.position);
-                case WINDMILL -> newConstruction = new WindMill(this.position);
-                case SOLAR_PANEL -> newConstruction = new SolarPanel(this.position);
+                case HOUSE -> newConstruction = new House(this.position, inventory);
+                case NUCLEAR_PLANT -> newConstruction = new NuclearPlant(this.position, inventory);
+                case COAL_PLANT -> newConstruction = new CoalPlant(this.position, inventory);
+                case GAZ_PLANT -> newConstruction = new GazPlant(this.position, inventory);
+                case OIL_PLANT -> newConstruction = new OilPlant(this.position, inventory);
+                case WINDMILL -> newConstruction = new WindMill(this.position, inventory);
+                case SOLAR_PANEL -> newConstruction = new SolarPanel(this.position, inventory);
                 default -> newConstruction = new Road((this.position));
 
             }
 
             if (inventory == null || inventory.useResource(newConstruction.getConstructionCost())){
                 this.construction = newConstruction;
+                if (this.construction instanceof Building){
+                    this.buildingThread = new Thread((Building) this.construction);
+                    this.buildingThread.start();
+                }
                 this.buildable = false;
                 return true;
             }
@@ -208,11 +212,19 @@ public class Plot {
         if (result){
             inventory.addResource(this.construction.getDestructionReward());
             this.buildable = true;
+            this.close();
             this.construction = null;
 
         }
+
         return result;
 
+    }
+
+    public void close(){
+        if (this.construction != null && this.construction instanceof Building){
+            ((Building) this.construction).stop();
+        }
     }
 
 

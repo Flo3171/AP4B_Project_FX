@@ -6,7 +6,7 @@ public class BuildingParameter {
 
     private final Resource buildingCost;
     private final float pollution;
-    private final float electricityProduction;
+    private final double electricityProduction;
     private final Resource input;
     private final Resource output;
     private final int inhabitantAmount;
@@ -30,7 +30,7 @@ public class BuildingParameter {
         return pollution;
     }
 
-    public float getElectricityProduction() {
+    public double getElectricityProduction() {
         return electricityProduction;
     }
 

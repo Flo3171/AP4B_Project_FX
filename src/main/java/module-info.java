@@ -11,7 +11,8 @@ module fr.utbm.info.ap4b_project_fx {
     requires eu.hansolo.tilesfx;
 
     opens fr.utbm.info.ap4b_project_fx to javafx.fxml;
-    exports fr.utbm.info.ap4b_project_fx;
     exports fr.utbm.ap4b_project_fx.energySims.controller;
     opens fr.utbm.ap4b_project_fx.energySims.controller to javafx.fxml;
+    exports fr.utbm.ap4b_project_fx.energySims;
+    opens fr.utbm.ap4b_project_fx.energySims to javafx.fxml;
 }

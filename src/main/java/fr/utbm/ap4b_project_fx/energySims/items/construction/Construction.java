@@ -4,7 +4,7 @@ package fr.utbm.ap4b_project_fx.energySims.items.construction;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
 
-public abstract class Construction {
+public abstract class Construction{
 
     private final Point position;
     private ConstructionType constructionType;

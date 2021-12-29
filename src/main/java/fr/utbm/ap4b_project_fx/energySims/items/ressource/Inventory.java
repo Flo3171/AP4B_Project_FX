@@ -37,10 +37,17 @@ public class Inventory {
     }
 
     public boolean addResource(Resource resource){
-        return this.resources[resource.getType().ordinal()].addResource(resource.getAmount());
+        if (resource != null){
+            return this.resources[resource.getType().ordinal()].addResource(resource.getAmount());
+        }
+        return true;
+
     }
 
     public boolean useResource(Resource resource){
-        return this.resources[resource.getType().ordinal()].addResource(- resource.getAmount());
+        if (resource != null){
+            return this.resources[resource.getType().ordinal()].addResource(- resource.getAmount());
+        }
+        return true;
     }
 }

@@ -14,8 +14,9 @@ import java.util.List;
 
 public class Pylon extends Construction {
 
-    private final List<Pylon> pylonNeighbours;
-    private final List<Building> buildingNeighbours;
+    private List<Pylon> pylonNeighbours;
+    private List<Building> buildingNeighbours;
+    private ElectricalNetwork network;
 
     public Pylon(Point position){
         super(position, ConstructionType.PYLON, new Resource(2, ResourceType.COPPER));
@@ -57,6 +58,10 @@ public class Pylon extends Construction {
         }
     }
 
+    public void setNetwork(ElectricalNetwork network) {
+        this.network = network;
+    }
+
     public List<Pylon> getConnectorNeighbours() {
         return pylonNeighbours;
     }
@@ -78,5 +83,9 @@ public class Pylon extends Construction {
     @Override
     public boolean destroy() {
         return true;
+    }
+
+    public boolean addElectricity(double electricityAmount){
+        return this.network.addElectricity(electricityAmount);
     }
 }

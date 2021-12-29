@@ -112,7 +112,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>fr.utbm.info.ap4b_project_fx/fr.utbm.info.ap4b_project_fx.HelloApplication
+                            <mainClass>fr.utbm.info.ap4b_project_fx/fr.utbm.ap4b_project_fx.energySims.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
