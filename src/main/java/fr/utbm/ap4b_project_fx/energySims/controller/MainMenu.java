@@ -60,7 +60,7 @@ public class MainMenu {
     }
 
     @FXML
-    public void load(ActionEvent event) throws IOException {
+    public void loads(ActionEvent event) throws IOException {
 
         try {
             FileChooser fileChooser = new FileChooser();
