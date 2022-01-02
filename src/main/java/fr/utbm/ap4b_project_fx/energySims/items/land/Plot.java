@@ -21,11 +21,11 @@ import java.util.Random;
  */
 public class Plot {
 
-    private final PlotType type;
+    private PlotType type;
     private boolean buildable;
     private final Point position;
     private Construction construction;
-    private final Resource undergroundResources;
+    private Resource undergroundResources;
     private Thread buildingThread;
 
     public Plot(Point position, boolean debug){
@@ -37,76 +37,80 @@ public class Plot {
             this.undergroundResources = null;
         }
         else {
-            Random r = new Random();
-            int pattern = r.nextInt((10));
-            if (pattern <  9){
-                /*
-                 * available to have undergroundResources
-                 */
-                int resources = r.nextInt(3);
-                if (resources == 0){
-
-                    int resourceType = r.nextInt(20);
-                    double resourceAmount = r.nextInt(91) + 10;
-                    if (resourceType < 4){
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.IRON);
-                    }
-                    else if (resourceType < 8){
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.COPPER);
-                    }
-                    else if (resourceType < 12){
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.COAL);
-                    }
-                    else if (resourceType < 13){
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.URANIUM);
-                    }
-                    else if (resourceType < 15){
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.WATER);
-                    }
-                    else if (resourceType < 18){
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.OIL);
-                    }
-                    else {
-                        this.undergroundResources = new Resource(resourceAmount, ResourceType.GAS);
-                    }
-
-                }
-                else{
-                    this.undergroundResources = null;
-                }
-
-                this.buildable = true;
-                this.construction = null;
-
-                if (pattern < 3){
-                    this.type = PlotType.GRASS;
-                    this.construction = new Tree(this.position);
-                    this.buildable = false;
-
-                }
-                else if (pattern < 4){
-                    this.type = PlotType.SAND;
-                }
-                else if (pattern < 6){
-                    this.type = PlotType.DIRT;
-                }
-                else if (pattern < 8){
-                    this.type = PlotType.STONE;
-                }
-                else {
-                    this.type = PlotType.CLAY;
-                }
-
-
-            }
-            else{
-                this.undergroundResources = new Resource(r.nextInt(64-10+1)+10, ResourceType.WATER);
-                this.buildable = false;
-                this.type = PlotType.WATER;
-            }
+            generate();
         }
 
 
+    }
+
+    private synchronized void generate(){
+        Random r = new Random();
+        int pattern = r.nextInt((10));
+        if (pattern <  9){
+            /*
+             * available to have undergroundResources
+             */
+            int resources = r.nextInt(3);
+            if (resources == 0){
+
+                int resourceType = r.nextInt(20);
+                double resourceAmount = r.nextInt(91) + 10;
+                if (resourceType < 4){
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.IRON);
+                }
+                else if (resourceType < 8){
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.COPPER);
+                }
+                else if (resourceType < 12){
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.COAL);
+                }
+                else if (resourceType < 13){
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.URANIUM);
+                }
+                else if (resourceType < 15){
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.WATER);
+                }
+                else if (resourceType < 18){
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.OIL);
+                }
+                else {
+                    this.undergroundResources = new Resource(resourceAmount, ResourceType.GAS);
+                }
+
+            }
+            else{
+                this.undergroundResources = null;
+            }
+
+            this.buildable = true;
+            this.construction = null;
+
+            if (pattern < 3){
+                this.type = PlotType.GRASS;
+                this.construction = new Tree(this.position);
+                this.buildable = false;
+
+            }
+            else if (pattern < 4){
+                this.type = PlotType.SAND;
+            }
+            else if (pattern < 6){
+                this.type = PlotType.DIRT;
+            }
+            else if (pattern < 8){
+                this.type = PlotType.STONE;
+            }
+            else {
+                this.type = PlotType.CLAY;
+            }
+
+
+        }
+        else{
+            this.undergroundResources = new Resource(r.nextInt(64-10+1)+10, ResourceType.WATER);
+            this.buildable = false;
+            this.type = PlotType.WATER;
+        }
     }
 
     public Plot(Point position, String fileContent){
@@ -183,6 +187,7 @@ public class Plot {
                 this.construction = newConstruction;
                 if (this.construction instanceof Building){
                     this.buildingThread = new Thread((Building) this.construction);
+                    this.buildingThread.setName("Thread_" + constructionType + this.position.toString());
                     this.buildingThread.start();
                 }
                 this.buildable = false;
@@ -191,13 +196,6 @@ public class Plot {
         }
         return false;
 
-    }
-
-    public void update(){
-
-        if (this.construction != null) {
-            this.construction.update();
-        }
     }
 
     public void updateNeighbour(Map map){

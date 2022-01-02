@@ -105,4 +105,8 @@ public class ElectricalNetwork {
         }
         return false;
     }
+
+    public double getAvailableElectricity() {
+        return availableElectricity;
+    }
 }

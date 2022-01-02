@@ -31,7 +31,7 @@ public class BuildingParameterMap {
                 2,
                 100,
                 new Resource(5, ResourceType.URANIUM),
-                null,
+                new Resource(0, ResourceType.NONE),
                 0,
                 25
         ));
@@ -41,7 +41,7 @@ public class BuildingParameterMap {
                 10,
                 20,
                 new Resource(10, ResourceType.COAL),
-                null,
+                new Resource(0, ResourceType.NONE),
                 0,
                 5
         ));
@@ -51,7 +51,7 @@ public class BuildingParameterMap {
                 8,
                 30,
                 new Resource(10, ResourceType.GAS),
-                null,
+                new Resource(0, ResourceType.NONE),
                 0,
                 6
         ));
@@ -61,7 +61,7 @@ public class BuildingParameterMap {
                 20,
                 60,
                 new Resource(10, ResourceType.OIL),
-                null,
+                new Resource(0, ResourceType.NONE),
                 0,
                 10
         ));
@@ -70,8 +70,8 @@ public class BuildingParameterMap {
                 new Resource(20, ResourceType.COPPER),
                 0,
                 20,
-                null,
-                null,
+                new Resource(0, ResourceType.NONE),
+                new Resource(0, ResourceType.NONE),
                 0,
                 2
         ));
@@ -80,8 +80,8 @@ public class BuildingParameterMap {
                 new Resource(10, ResourceType.COPPER),
                 0,
                 10,
-                null,
-                null,
+                new Resource(0, ResourceType.NONE),
+                new Resource(0, ResourceType.NONE),
                 0,
                 2
         ));

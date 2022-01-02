@@ -1,6 +1,7 @@
 package fr.utbm.ap4b_project_fx.energySims.items.ressource;
 
 public enum ResourceType {
+    NONE,
     COAL,
     IRON,
     COPPER,
@@ -27,7 +28,7 @@ public enum ResourceType {
             case SATISFACTION -> {return "Satisfaction";}
 
         }
-        return "";
+        return "NONE";
     }
 
     public static ResourceType getResourceType(String name){
@@ -53,7 +54,7 @@ public enum ResourceType {
             return SATISFACTION;
         }
         else {
-            return null;
+            return NONE;
         }
     }
 }

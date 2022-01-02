@@ -12,9 +12,9 @@ public class Building extends Construction implements Runnable {
     private final ConstructionType type;
     private Pylon pylonLink;
     protected volatile boolean running = true;
-    private BuildingParameter buildingParameter;
+    private final BuildingParameter buildingParameter;
 
-    private Inventory inventory;
+    private final Inventory inventory;
     private static final BuildingParameterMap parameterMap = new BuildingParameterMap();
 
     public Building(ConstructionType type, Point position, Inventory inventory) {
@@ -28,10 +28,7 @@ public class Building extends Construction implements Runnable {
     @Override
     public void run() {
         while (this.running){
-            if (this.pylonLink.addElectricity(this.buildingParameter.getElectricityProduction()) && this.inventory.useResource(this.buildingParameter.getInput())){
-                this.inventory.addResource(this.buildingParameter.getOutput());
-                System.out.println(this.toString() + " Consume : " + this.buildingParameter.getInput().toString() + " Produce : " + this.buildingParameter.getOutput() + " Electricity : " + this.buildingParameter.getElectricityProduction());
-            }
+            produce();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -39,6 +36,21 @@ public class Building extends Construction implements Runnable {
             }
         }
 
+    }
+
+    private synchronized void produce(){
+        double availableElectricity = 0;
+        if (this.pylonLink.getNetwork() != null){
+            availableElectricity = this.pylonLink.getNetwork().getAvailableElectricity();
+        }
+        if (availableElectricity + this.buildingParameter.getElectricityProduction() >= 0 && this.inventory.useResource(this.buildingParameter.getInput())){
+            this.pylonLink.addElectricity(this.buildingParameter.getElectricityProduction());
+            this.inventory.addResource(this.buildingParameter.getOutput());
+            System.out.println(this + " Consume : " + this.buildingParameter.getInput().toString() + " Produce : " + this.buildingParameter.getOutput() + " Electricity : " + this.buildingParameter.getElectricityProduction());
+        }
+        else {
+            System.out.println(this + " unable to produce ");
+        }
     }
 
     public void stop(){

@@ -121,7 +121,7 @@ public class Map {
      *                  the absolute or relative path to the file where we want to save
      * @see Map#Map(String)  Map
      */
-    public void saveInFile(String filePath){
+    public synchronized void saveInFile(String filePath){
         List<String> mapStringList = new ArrayList<>();
         mapStringList.add(this.mapSize.toString());
         mapStringList.add(this.inventory.toString());
@@ -155,31 +155,18 @@ public class Map {
      *                  True if all gone well
      *                  False else
      */
-    public boolean build(Point position, ConstructionType constructionType) {
+    public synchronized boolean build(Point position, ConstructionType constructionType) {
         boolean result = this.casesTable[position.getX()][position.getY()].build(constructionType, this.inventory);
         this.updateNetwork();
-        this.update();
         return result;
 
     }
 
 
     /**
-     * update alle the plot on the grid
-     */
-    public void update(){
-        for (int i = 0; i < this.mapSize.getY(); i++) {
-            for (int j = 0; j < this.mapSize.getX(); j++) {
-                this.casesTable[j][i].update();
-            }
-        }
-
-    }
-
-    /**
      * update the network on the map by updating the neighbour of all the construction on the map and then update really the network
      */
-    public void updateNetwork(){
+    public synchronized void updateNetwork(){
         for (int i = 0; i < this.mapSize.getY(); i++) {
             for (int j = 0; j < this.mapSize.getX(); j++) {
                 this.casesTable[j][i].updateNeighbour(this);
@@ -198,14 +185,13 @@ public class Map {
      *          False else
      *
      */
-    public boolean destroyConstruction(Point position){
+    public synchronized boolean destroyConstruction(Point position){
         boolean result = this.casesTable[position.getX()][position.getY()].destroy(this.inventory);
         this.updateNetwork();
-        this.update();
         return  result;
     }
 
-    public void close(){
+    public synchronized void close(){
         for (int i = 0; i < this.mapSize.getY(); i++) {
             for (int j = 0; j < this.mapSize.getX(); j++) {
                 this.casesTable[j][i].close();
