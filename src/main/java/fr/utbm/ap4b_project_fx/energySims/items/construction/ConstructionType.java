@@ -12,7 +12,8 @@ public enum ConstructionType {
     GAZ_PLANT,
     OIL_PLANT,
     WINDMILL,
-    SOLAR_PANEL;
+    SOLAR_PANEL,
+    DRILLER;
 
     @Override
     public String toString() {
@@ -28,6 +29,7 @@ public enum ConstructionType {
             case OIL_PLANT -> {return "OP";}
             case WINDMILL -> {return "Wi";}
             case SOLAR_PANEL -> {return "SP";}
+            case DRILLER -> {return "Dr";}
 
         }
         return "";
@@ -57,6 +59,8 @@ public enum ConstructionType {
             return WINDMILL;
         } else if (name.equals(SOLAR_PANEL.toString())) {
             return SOLAR_PANEL;
+        } else if (name.equals(DRILLER.toString())){
+            return DRILLER;
         } else {
             return null;
         }

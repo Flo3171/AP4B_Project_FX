@@ -10,6 +10,9 @@ import fr.utbm.ap4b_project_fx.energySims.items.construction.ConstructionType;
 public class Building extends Construction implements Runnable {
 
     private final ConstructionType type;
+
+
+
     private Pylon pylonLink;
     protected volatile boolean running = true;
     private final BuildingParameter buildingParameter;
@@ -38,7 +41,7 @@ public class Building extends Construction implements Runnable {
 
     }
 
-    private synchronized void produce(){
+    protected synchronized void produce(){
         double availableElectricity = 0;
         if (this.pylonLink.getNetwork() != null){
             availableElectricity = this.pylonLink.getNetwork().getAvailableElectricity();
@@ -51,6 +54,22 @@ public class Building extends Construction implements Runnable {
         else {
             System.out.println(this + " unable to produce ");
         }
+    }
+
+    public ConstructionType getType() {
+        return type;
+    }
+
+    public Pylon getPylonLink() {
+        return pylonLink;
+    }
+
+    public BuildingParameter getBuildingParameter() {
+        return buildingParameter;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public void stop(){

@@ -179,6 +179,7 @@ public class Plot {
                 case OIL_PLANT -> newConstruction = new OilPlant(this.position, inventory);
                 case WINDMILL -> newConstruction = new WindMill(this.position, inventory);
                 case SOLAR_PANEL -> newConstruction = new SolarPanel(this.position, inventory);
+                case DRILLER -> newConstruction = new Driller(this.position, inventory, this);
                 default -> newConstruction = new Road((this.position));
 
             }
@@ -225,5 +226,11 @@ public class Plot {
         }
     }
 
+    public Resource getUndergroundResources() {
+        return undergroundResources;
+    }
 
+    public void dry(){
+        this.type = PlotType.DRY_PLOT;
+    }
 }

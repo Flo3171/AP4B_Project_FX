@@ -22,6 +22,7 @@ public class Main {
         m.build(new Point(0,0), ConstructionType.PYLON);
         m.build(new Point(1, 0), ConstructionType.HOUSE);
         m.build(new Point(1,1), ConstructionType.WINDMILL);
+        m.build(new Point(0, 1), ConstructionType.DRILLER);
 
         System.out.println(m);
 

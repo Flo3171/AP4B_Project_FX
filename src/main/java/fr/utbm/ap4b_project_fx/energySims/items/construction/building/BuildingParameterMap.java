@@ -86,6 +86,16 @@ public class BuildingParameterMap {
                 2
         ));
 
+        this.parameter.put(ConstructionType.DRILLER, new BuildingParameter(
+                new Resource(10, ResourceType.IRON),
+                0,
+                -20,
+                new Resource(0, ResourceType.NONE),
+                new Resource(0, ResourceType.NONE),
+                0,
+                4
+        ));
+
     }
 
 
