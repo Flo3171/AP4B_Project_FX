@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -24,7 +25,7 @@
                   <Font name="Golden Arrow" size="24.0" />
                </font>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" text="B1">
+            <Button fx:id="destroy" contentDisplay="CENTER" mnemonicParsing="false" onAction="#destroyMod" prefHeight="200.0" prefWidth="60.0" text="D">
                <font>
                   <Font name="Golden Arrow" size="24.0" />
                </font>
@@ -77,7 +78,10 @@
          </children></HBox>
    </bottom>
    <top>
-      <HBox prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="wood" text="TEST" textFill="WHITE" />
+         </children></HBox>
    </top>
    <center>
       <GridPane fx:id="Grid" disable="true" prefHeight="434.0" prefWidth="900.0" style="-fx-background-color: blue;">

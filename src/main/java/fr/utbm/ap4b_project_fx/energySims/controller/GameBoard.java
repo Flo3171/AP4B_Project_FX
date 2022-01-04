@@ -43,14 +43,22 @@ public class GameBoard implements Initializable {
 
 
     boolean firstClickContruct=true;
+    boolean isFirstClickDestroy=true;
     boolean contructionMode=false;
+    boolean destructionMode=false;
 
+    @FXML
+    private Label wood;
 
     @FXML
     private GridPane Grid;
 
     @FXML
     private Button Construction;
+
+
+    @FXML
+    private Button destroy;
 
     @FXML
 
@@ -96,6 +104,7 @@ public class GameBoard implements Initializable {
                         System.out.printf(type.toString());
                         buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
                         stage.close();
+                        wood.setText(MainMenu.getMap().getInventory().toString());
                     }
                 });
 
@@ -115,6 +124,14 @@ public class GameBoard implements Initializable {
                 stage.show();
 
             }
+            else if (destructionMode==true)
+            {
+                MainMenu.getMap().destroyConstruction(new Point(colIndex,rowIndex));
+                ImageView img0 = new ImageView();
+                img0.setImage(null);
+                //removeNode(rowIndex,colIndex,Grid);
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="house" || node.getId()=="oil" || node.getId()=="nuclear" || node.getId()=="wind" || node.getId()=="coal" || node.getId()=="drill" || node.getId()=="pylon" );
+            }
 
         }
     };
@@ -122,7 +139,7 @@ public class GameBoard implements Initializable {
     @FXML
     void ContructMod(ActionEvent event) {
 
-        if(firstClickContruct==true)
+        if(firstClickContruct==true && destructionMode==false)
         {
             contructionMode=true;
             firstClickContruct=false;
@@ -131,10 +148,29 @@ public class GameBoard implements Initializable {
         else
         {
             firstClickContruct=true;
+            contructionMode=false;
             Grid.setDisable(true);
         }
 
     }
+
+    @FXML
+    void destroyMod(ActionEvent event) {
+        if(isFirstClickDestroy==true && contructionMode==false)
+        {
+            destructionMode=true;
+            isFirstClickDestroy=false;
+            Grid.setDisable(false);
+        }
+        else
+        {
+            isFirstClickDestroy=true;
+            destructionMode=false;
+            Grid.setDisable(true);
+        }
+    }
+
+
 
     void buildingBuilder(Map m, Point pos, ConstructionType type)
     {
@@ -150,6 +186,7 @@ public class GameBoard implements Initializable {
             System.out.printf("you cant PUT THAT HERE WTF BRO");
         }
     }
+
 
    void mapDisplayer(Map m){
 
@@ -272,16 +309,18 @@ public class GameBoard implements Initializable {
                l10.setText("HOUSE");
                Grid.add(l10,pos.getX(),pos.getY());*/
 
-               ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\house.png");
-               img6.setFitHeight(maxHeight);
-               img6.setFitWidth(maxWidth);
-               img6.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-               Grid.add(img6,pos.getX(),pos.getY());
+               ImageView img1 = new ImageView(url+"\\src\\main\\resources\\images\\house.png");
+               img1.setId("house");
+               img1.setFitHeight(maxHeight);
+               img1.setFitWidth(maxWidth);
+               img1.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img1,pos.getX(),pos.getY());
 
                break;
 
            case PYLON:
                ImageView img2 = new ImageView(url+"\\src\\main\\resources\\images\\pylon.png");
+               img2.setId("pylon");
                img2.setFitHeight(maxHeight);
                img2.setFitWidth(maxWidth);
                img2.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -290,6 +329,7 @@ public class GameBoard implements Initializable {
 
            case DRILLER:
                ImageView img3 = new ImageView(url+"\\src\\main\\resources\\images\\drill.png");
+               img3.setId("drill");
                img3.setFitHeight(maxHeight);
                img3.setFitWidth(maxWidth);
                img3.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -299,22 +339,45 @@ public class GameBoard implements Initializable {
            case SOLAR_PANEL:
 
            case OIL_PLANT:
+               ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\oil.png");
+               img5.setId("oil");
+               img5.setFitHeight(maxHeight);
+               img5.setFitWidth(maxWidth);
+               img5.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img5,pos.getX(),pos.getY());
 
+               break;
            case NUCLEAR_PLANT:
-               ImageView img7 = new ImageView(url+"\\src\\main\\resources\\images\\nuclear.png");
+               ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\nuclear.png");
+               img6.setId("nuclear");
+               img6.setFitHeight(maxHeight);
+               img6.setFitWidth(maxWidth);
+               img6.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img6,pos.getX(),pos.getY());
+               break;
+
+           case WINDMILL:
+               ImageView img7 = new ImageView(url+"\\src\\main\\resources\\images\\wind.png");
+               img7.setId("wind");
                img7.setFitHeight(maxHeight);
                img7.setFitWidth(maxWidth);
                img7.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                Grid.add(img7,pos.getX(),pos.getY());
                break;
-           case WINDMILL:
 
            case GAZ_PLANT:
 
            case PIPE:
 
            case COAL_PLANT:
+               ImageView img10 = new ImageView(url+"\\src\\main\\resources\\images\\coal.png");
+               img10.setId("coal");
+               img10.setFitHeight(maxHeight);
+               img10.setFitWidth(maxWidth);
+               img10.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img10,pos.getX(),pos.getY());
 
+               break;
            case ROAD:
 
            case TREE:
