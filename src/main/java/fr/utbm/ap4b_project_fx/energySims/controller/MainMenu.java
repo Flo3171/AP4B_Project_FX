@@ -40,7 +40,7 @@ private static Map m=new Map(new Point(26, 14),false);
         size.setY(14);
         try {
 
-            Map m = new Map(size, false);
+            //Map m = new Map(size, false);
             URL fxmlURL = getClass().getResource("/fr/utbm/info/ap4b_project_fx/GameBoard.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
             Parent root = fxmlLoader.load();

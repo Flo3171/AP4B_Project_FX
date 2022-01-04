@@ -29,9 +29,9 @@
                   <Font name="Golden Arrow" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="Construction" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ContructMod" prefHeight="200.0" prefWidth="60.0" text="Constructon">
+            <Button fx:id="Construction" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ContructMod" prefHeight="200.0" prefWidth="60.0" text="B">
                <font>
-                  <Font size="7.0" />
+                  <Font size="24.0" />
                </font>
             </Button>
          </children></VBox>

@@ -88,7 +88,7 @@ public class GameBoard implements Initializable {
                 MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COAL));
                 MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WATER));
                 MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.IRON));
-
+                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.URANIUM));
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override public void handle(ActionEvent e) {
                         String choiceValue=choiceBox.getValue().toString();
@@ -141,7 +141,7 @@ public class GameBoard implements Initializable {
 
         if(m.build(pos,type)==true)
         {
-            //m.build(pos,type);
+            m.build(pos,type);
             buildingDisplayer(type,pos);
             System.out.printf("GREAT SUCESS");
         }
@@ -287,6 +287,37 @@ public class GameBoard implements Initializable {
                img2.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                Grid.add(img2,pos.getX(),pos.getY());
                break;
+
+           case DRILLER:
+               ImageView img3 = new ImageView(url+"\\src\\main\\resources\\images\\drill.png");
+               img3.setFitHeight(maxHeight);
+               img3.setFitWidth(maxWidth);
+               img3.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img3,pos.getX(),pos.getY());
+               break;
+
+           case SOLAR_PANEL:
+
+           case OIL_PLANT:
+
+           case NUCLEAR_PLANT:
+               ImageView img7 = new ImageView(url+"\\src\\main\\resources\\images\\nuclear.png");
+               img7.setFitHeight(maxHeight);
+               img7.setFitWidth(maxWidth);
+               img7.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img7,pos.getX(),pos.getY());
+               break;
+           case WINDMILL:
+
+           case GAZ_PLANT:
+
+           case PIPE:
+
+           case COAL_PLANT:
+
+           case ROAD:
+
+           case TREE:
 
            default:
                Label l11=new Label();
