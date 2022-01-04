@@ -1,21 +1,31 @@
 package fr.utbm.ap4b_project_fx.energySims.controller;
 
+import fr.utbm.ap4b_project_fx.energySims.items.construction.ConstructionType;
 import fr.utbm.ap4b_project_fx.energySims.items.land.Map;
 import fr.utbm.ap4b_project_fx.energySims.items.land.PlotType;
+import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
+import fr.utbm.ap4b_project_fx.energySims.items.ressource.ResourceType;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
+import fr.utbm.ap4b_project_fx.energySims.controller.MainMenu;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 
 import javafx.scene.Node;
 
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
 
@@ -24,17 +34,23 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 public class GameBoard implements Initializable {
     ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
 
 
+    boolean firstClickContruct=true;
+    boolean contructionMode=false;
+
 
     @FXML
     private GridPane Grid;
 
-
+    @FXML
+    private Button Construction;
 
     @FXML
 
@@ -49,10 +65,91 @@ public class GameBoard implements Initializable {
             Integer colIndex = GridPane.getColumnIndex(source);
             Integer rowIndex = GridPane.getRowIndex(source);
             System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
+
+            if(contructionMode==true)
+            {
+                Stage stage =new Stage();
+                Label label = new Label();
+                FlowPane root = new FlowPane();
+
+                ChoiceBox choiceBox = new ChoiceBox();
+                choiceBox.setValue("HOUSE");
+
+                //choiceBox.getItems().setAll(ConstructionType.values());
+               // ObservableList<?> languages = FXCollections.observableArrayList("TREE", "PYLON", "PIPE", "ROAD", "HOUSE", "NUCLEAR_PLANT", "COAL_PLANT", "GAZ_PLANT", "OIL_PLANT", "WINDMILL", "SOLAR_PANEL", "DRILLER");
+                choiceBox.setItems(FXCollections.observableArrayList("TREE", "PYLON", "PIPE", "ROAD", "HOUSE", "NUCLEAR_PLANT", "COAL_PLANT","GAZ_PLANT", "OIL_PLANT", "WINDMILL", "SOLAR_PANEL", "DRILLER"));
+                Button button=new Button();
+                button.setText("validate");
+                button.setVisible(true);
+
+                //
+                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WOOD));
+                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COPPER));
+                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COAL));
+                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WATER));
+                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.IRON));
+
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent e) {
+                        String choiceValue=choiceBox.getValue().toString();
+                        ConstructionType type=ConstructionType.valueOf(choiceValue);
+                        System.out.printf(type.toString());
+                        buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
+                        stage.close();
+                    }
+                });
+
+                root.setPadding(new Insets(10));
+
+                root.getChildren().addAll(label, choiceBox, button);
+                root.setPadding(new Insets(10));
+                root.setHgap(10);
+
+
+
+
+                Scene scene = new Scene(root, 400, 200);
+
+                stage.setTitle("ff");
+                stage.setScene(scene);
+                stage.show();
+
+            }
+
         }
     };
 
+    @FXML
+    void ContructMod(ActionEvent event) {
 
+        if(firstClickContruct==true)
+        {
+            contructionMode=true;
+            firstClickContruct=false;
+            Grid.setDisable(false);
+        }
+        else
+        {
+            firstClickContruct=true;
+            Grid.setDisable(true);
+        }
+
+    }
+
+    void buildingBuilder(Map m, Point pos, ConstructionType type)
+    {
+
+        if(m.build(pos,type)==true)
+        {
+            //m.build(pos,type);
+            buildingDisplayer(type,pos);
+            System.out.printf("GREAT SUCESS");
+        }
+        else
+        {
+            System.out.printf("you cant PUT THAT HERE WTF BRO");
+        }
+    }
 
    void mapDisplayer(Map m){
 
@@ -166,6 +263,38 @@ public class GameBoard implements Initializable {
      }
    }
 
+   void buildingDisplayer(ConstructionType type,Point pos)
+   {
+       switch (type)
+       {
+           case HOUSE:
+              /* Label l10=new Label();
+               l10.setText("HOUSE");
+               Grid.add(l10,pos.getX(),pos.getY());*/
+
+               ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\house.png");
+               img6.setFitHeight(maxHeight);
+               img6.setFitWidth(maxWidth);
+               img6.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img6,pos.getX(),pos.getY());
+
+               break;
+
+           case PYLON:
+               ImageView img2 = new ImageView(url+"\\src\\main\\resources\\images\\pylon.png");
+               img2.setFitHeight(maxHeight);
+               img2.setFitWidth(maxWidth);
+               img2.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img2,pos.getX(),pos.getY());
+               break;
+
+           default:
+               Label l11=new Label();
+               l11.setText("FORFAIT");
+               Grid.add(l11,pos.getX(),pos.getY());
+       }
+   }
+
     @FXML
    void getGridSize(){
        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -191,6 +320,8 @@ public class GameBoard implements Initializable {
         getGridSize();
 
     }
+
+
 
    /* public Button witchSlot(Button btn){
         if(btn.equals(b1)){

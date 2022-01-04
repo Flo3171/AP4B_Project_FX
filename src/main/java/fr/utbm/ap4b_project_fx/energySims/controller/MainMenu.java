@@ -2,6 +2,7 @@ package fr.utbm.ap4b_project_fx.energySims.controller;
 
 import fr.utbm.ap4b_project_fx.energySims.items.land.Map;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
+import fr.utbm.ap4b_project_fx.energySims.Main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import java.net.URL;
 public class MainMenu {
 
     String url = new File( "" ).getAbsolutePath();
+private static Map m=new Map(new Point(26, 14),false);
 
     @FXML
     private Button loadGame;
@@ -97,7 +99,9 @@ public class MainMenu {
         }
     }
 
-
+public static Map getMap(){
+        return m;
+}
 
     @FXML
     void quit() {

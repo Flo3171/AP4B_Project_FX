@@ -12,11 +12,11 @@ public class Main {
     public static void main(String[] args){
         Map m = new Map(new Point(2, 2), true);
 
-        m.getInventory().addResource(new Resource(100, ResourceType.WOOD));
-        m.getInventory().addResource(new Resource(100, ResourceType.COPPER));
-        m.getInventory().addResource(new Resource(100, ResourceType.COAL));
-        m.getInventory().addResource(new Resource(100, ResourceType.WATER));
-        m.getInventory().addResource(new Resource(100, ResourceType.IRON));
+        m.getInventory().addResource(new Resource(10000, ResourceType.WOOD));
+        m.getInventory().addResource(new Resource(10000, ResourceType.COPPER));
+        m.getInventory().addResource(new Resource(10000, ResourceType.COAL));
+        m.getInventory().addResource(new Resource(10000, ResourceType.WATER));
+        m.getInventory().addResource(new Resource(10000, ResourceType.IRON));
 
 
         m.build(new Point(0,0), ConstructionType.PYLON);
