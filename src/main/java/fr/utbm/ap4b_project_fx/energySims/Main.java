@@ -24,7 +24,16 @@ public class Main {
         m.build(new Point(1,1), ConstructionType.WINDMILL);
         m.build(new Point(0, 1), ConstructionType.DRILLER);
 
+        m.getCasesTable(0, 1).setUndergroundResources(new Resource( 100, ResourceType.COAL));
+
         System.out.println(m);
+
+
+
+        for (Resource r:
+                m.getInventory().getResources()) {
+            System.out.println(r.getType() + ": " + r.getAmount());
+        }
 
         /*m.destroyConstruction(new Point(7,4));
 
