@@ -127,10 +127,17 @@ public class GameBoard implements Initializable {
             else if (destructionMode==true)
             {
                 MainMenu.getMap().destroyConstruction(new Point(colIndex,rowIndex));
-                ImageView img0 = new ImageView();
-                img0.setImage(null);
-                //removeNode(rowIndex,colIndex,Grid);
-               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="house" || node.getId()=="oil" || node.getId()=="nuclear" || node.getId()=="wind" || node.getId()=="coal" || node.getId()=="drill" || node.getId()=="pylon" );
+
+
+
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="house");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="oil");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="nuclear");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="wind");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="coal");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="drill");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="pylon");
+
             }
 
         }
@@ -188,6 +195,7 @@ public class GameBoard implements Initializable {
     }
 
 
+
    void mapDisplayer(Map m){
 
        Point g =m.getMapSize();
@@ -235,6 +243,15 @@ public class GameBoard implements Initializable {
                 img3.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img3,i,j);
 
+                ConstructionType treeType=m.getCasesTable(i,j).getConstruction().getConstructionType();
+                if (treeType==ConstructionType.TREE)
+                {
+                    ImageView img9 = new ImageView(url+"\\src\\main\\resources\\images\\Tree.png");
+                    img9.setFitHeight(maxHeight);
+                    img9.setFitWidth(maxWidth);
+                    img9.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+                    Grid.add(img9,i,j);
+                }
 
 
                 Label l3=new Label();
@@ -371,7 +388,7 @@ public class GameBoard implements Initializable {
 
            case COAL_PLANT:
                ImageView img10 = new ImageView(url+"\\src\\main\\resources\\images\\coal.png");
-               img10.setId("coal");
+               img10.setId("CP");
                img10.setFitHeight(maxHeight);
                img10.setFitWidth(maxWidth);
                img10.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
