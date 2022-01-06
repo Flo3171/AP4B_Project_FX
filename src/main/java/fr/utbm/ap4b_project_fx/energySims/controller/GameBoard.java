@@ -6,40 +6,50 @@ import fr.utbm.ap4b_project_fx.energySims.items.land.PlotType;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.ResourceType;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
+import fr.utbm.ap4b_project_fx.energySims.controller.InGameMenu;
 import fr.utbm.ap4b_project_fx.energySims.controller.MainMenu;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 
 import javafx.scene.Node;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.controlsfx.control.spreadsheet.Grid;
 
 public class GameBoard implements Initializable {
-    ObservableList<String> ChoiceMake = FXCollections.observableArrayList("Habitation", "usine");
+
 
 
     boolean firstClickContruct=true;
@@ -66,9 +76,43 @@ public class GameBoard implements Initializable {
     double maxHeight ;
     double maxWidth ;
 
-    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+
+    @FXML
+    private BorderPane scene;
+
+    @FXML
+    void menu(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.M) {
+
+            try {
+
+                URL fxmlURL = getClass().getResource("/fr/utbm/info/ap4b_project_fx/InGameMenu.fxml");
+                FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+                Parent root = fxmlLoader.load();
+
+                InGameMenu menu = fxmlLoader.getController();
+
+                Stage stage = new Stage();
+
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Wejgame");
+                stage.setScene(new Scene(root));
+                stage.setFullScreen(false);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    EventHandler<Event> eventHandler = new EventHandler<Event>() {
+
+
         @Override
-        public void handle(MouseEvent e) {
+        public void handle(Event e) {
+
             Node source = (Node)e.getSource() ;
             Integer colIndex = GridPane.getColumnIndex(source);
             Integer rowIndex = GridPane.getRowIndex(source);
@@ -90,7 +134,7 @@ public class GameBoard implements Initializable {
                 button.setText("validate");
                 button.setVisible(true);
 
-                //
+
                 MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WOOD));
                 MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COPPER));
                 MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COAL));
@@ -106,6 +150,7 @@ public class GameBoard implements Initializable {
                         stage.close();
                         wood.setText(MainMenu.getMap().getInventory().toString());
                     }
+
                 });
 
                 root.setPadding(new Insets(10));
@@ -137,10 +182,13 @@ public class GameBoard implements Initializable {
                 Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="coal");
                 Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="drill");
                 Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="pylon");
+                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="tree");
+
 
             }
 
         }
+
     };
 
     @FXML
@@ -212,6 +260,7 @@ public class GameBoard implements Initializable {
                 img.setFitHeight(maxHeight);
                 img.setFitWidth(maxWidth);
                 img.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+                img.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
                 Grid.add(img,i,j);
 
                 Label l1=new Label();
@@ -247,6 +296,7 @@ public class GameBoard implements Initializable {
                 if (treeType==ConstructionType.TREE)
                 {
                     ImageView img9 = new ImageView(url+"\\src\\main\\resources\\images\\Tree.png");
+                    img9.setId("tree");
                     img9.setFitHeight(maxHeight);
                     img9.setFitWidth(maxWidth);
                     img9.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -433,6 +483,8 @@ public class GameBoard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         getGridSize();
+        Grid.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
+
 
     }
 

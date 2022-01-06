@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="640.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.utbm.ap4b_project_fx.energySims.controller.GameBoard">
+<BorderPane fx:id="scene" onKeyPressed="#menu" prefHeight="640.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.utbm.ap4b_project_fx.energySims.controller.GameBoard">
    <right>
       <VBox maxWidth="60.0" minWidth="60.0" prefHeight="550.0" prefWidth="60.0" BorderPane.alignment="CENTER">
          <children>
