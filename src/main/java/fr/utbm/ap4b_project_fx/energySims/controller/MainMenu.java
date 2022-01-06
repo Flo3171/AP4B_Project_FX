@@ -48,6 +48,7 @@ private static Map m=new Map(new Point(26, 14),false);
             GameBoard Board = fxmlLoader.getController();
             Board.mapDisplayer(m);
 
+
             Stage stage = new Stage();
 
             stage.setResizable(false);
