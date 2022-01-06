@@ -26,6 +26,10 @@ public class Inventory {
 
     }
 
+    public Resource[] getResources() {
+        return resources;
+    }
+
     @Override
     public String toString() {
         StringBuilder value = new StringBuilder();
@@ -50,4 +54,6 @@ public class Inventory {
         }
         return true;
     }
+
+
 }

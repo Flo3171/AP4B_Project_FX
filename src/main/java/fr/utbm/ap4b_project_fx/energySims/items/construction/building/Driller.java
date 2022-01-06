@@ -17,18 +17,15 @@ public class Driller extends Building{
 
     @Override
     protected synchronized void produce() {
-        double availableElectricity = 0;
-        if (this.getPylonLink().getNetwork() != null){
-            availableElectricity = this.getPylonLink().getNetwork().getAvailableElectricity();
-        }
-        if (availableElectricity + this.getBuildingParameter().getElectricityProduction() >= 0 && this.plot.getUndergroundResources() != null && this.plot.getUndergroundResources().getAmount() >= 1){
+        if (this.getPylonLink() != null && this.getAvailableElectricity() + this.getBuildingParameter().getElectricityProduction() >= 0 && this.plot.getUndergroundResources() != null && this.plot.getUndergroundResources().getAmount() >= 1){
             this.getPylonLink().addElectricity(this.getBuildingParameter().getElectricityProduction());
-            this.getInventory().addResource(new Resource(1, this.plot.getUndergroundResources().getType()));
+            Resource resource = new Resource(1, this.plot.getUndergroundResources().getType());
+            this.getInventory().addResource(resource);
             this.plot.getUndergroundResources().addResource(-1);
             if (this.plot.getType() == PlotType.WATER && this.plot.getUndergroundResources().getAmount() <= 0){
                 this.plot.dry();
             }
-            System.out.println(this + " Consume : " + this.getBuildingParameter().getInput().toString() + " Produce : " + this.getBuildingParameter().getOutput() + " Electricity : " + this.getBuildingParameter().getElectricityProduction());
+            System.out.println(this + " Mine : " + resource + " Produce : " + resource + " Electricity : " + this.getBuildingParameter().getElectricityProduction());
         }
         else {
             System.out.println(this + " unable to produce ");
