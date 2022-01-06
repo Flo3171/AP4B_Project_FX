@@ -242,7 +242,7 @@ public class GameBoard implements Initializable {
                 img3.setFitWidth(maxWidth);
                 img3.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img3,i,j);
-
+            try {
                 ConstructionType treeType=m.getCasesTable(i,j).getConstruction().getConstructionType();
                 if (treeType==ConstructionType.TREE)
                 {
@@ -252,6 +252,10 @@ public class GameBoard implements Initializable {
                     img9.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                     Grid.add(img9,i,j);
                 }
+            }catch (NullPointerException e){
+
+            }
+
 
 
                 Label l3=new Label();
