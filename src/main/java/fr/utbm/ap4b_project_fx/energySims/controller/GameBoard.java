@@ -262,10 +262,10 @@ public class GameBoard implements Initializable {
                 img.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 img.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
                 Grid.add(img,i,j);
+                try {
+                    buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
 
-                Label l1=new Label();
-                l1.setText("dirt");
-                Grid.add(l1,i,j);
                 break;
 
             case CLAY:
@@ -275,13 +275,12 @@ public class GameBoard implements Initializable {
                 img2.setFitWidth(maxWidth);
                 img2.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img2,i,j);
+                try {
+                buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
 
 
 
-
-                Label l2=new Label();
-                l2.setText("clay");
-                Grid.add(l2,i,j);
                 break;
 
             case GRASS:
@@ -291,26 +290,11 @@ public class GameBoard implements Initializable {
                 img3.setFitWidth(maxWidth);
                 img3.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img3,i,j);
-            try {
-                ConstructionType treeType=m.getCasesTable(i,j).getConstruction().getConstructionType();
-                if (treeType==ConstructionType.TREE)
-                {
-                    ImageView img9 = new ImageView(url+"\\src\\main\\resources\\images\\Tree.png");
-                    img9.setId("tree");
-                    img9.setFitHeight(maxHeight);
-                    img9.setFitWidth(maxWidth);
-                    img9.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-                    Grid.add(img9,i,j);
-                }
-            }catch (NullPointerException e){
-
-            }
+                try {
+                    buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
 
 
-
-                Label l3=new Label();
-                l3.setText("grass");
-                Grid.add(l3,i,j);
                 break;
 
             case SAND:
@@ -319,12 +303,11 @@ public class GameBoard implements Initializable {
                 img4.setFitWidth(maxWidth);
                 img4.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img4,i,j);
+                try {
+                    buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
 
 
-
-                Label l4=new Label();
-                l4.setText("sand");
-                Grid.add(l4,i,j);
                 break;
 
             case STONE:
@@ -333,12 +316,10 @@ public class GameBoard implements Initializable {
                 img5.setFitWidth(maxWidth);
                 img5.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img5,i,j);
+                try {
+                    buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
 
-
-
-                Label l5=new Label();
-                l5.setText("stone");
-                Grid.add(l5,i,j);
                 break;
 
             case WATER:
@@ -348,12 +329,10 @@ public class GameBoard implements Initializable {
                 img6.setFitWidth(maxWidth);
                 img6.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 Grid.add(img6,i,j);
+                try {
+                    buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
 
-
-
-                Label l6=new Label();
-                l6.setText("water");
-                Grid.add(l6,i,j);
                 break;
 
             case DRY_PLOT:
@@ -452,6 +431,12 @@ public class GameBoard implements Initializable {
            case ROAD:
 
            case TREE:
+               ImageView img9 = new ImageView(url+"\\src\\main\\resources\\images\\Tree.png");
+               img9.setId("tree");
+               img9.setFitHeight(maxHeight);
+               img9.setFitWidth(maxWidth);
+               img9.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img9,pos.getX(),pos.getY());
 
            default:
                Label l11=new Label();
@@ -459,6 +444,8 @@ public class GameBoard implements Initializable {
                Grid.add(l11,pos.getX(),pos.getY());
        }
    }
+
+
 
     @FXML
    void getGridSize(){
