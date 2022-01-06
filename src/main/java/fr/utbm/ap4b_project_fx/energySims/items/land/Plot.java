@@ -87,8 +87,11 @@ public class Plot {
 
             if (pattern < 3){
                 this.type = PlotType.GRASS;
-                this.construction = new Tree(this.position);
-                this.buildable = false;
+                if (pattern == 0){
+                    this.construction = new Tree(this.position);
+                    this.buildable = false;
+                }
+
 
             }
             else if (pattern < 4){
@@ -163,6 +166,9 @@ public class Plot {
     }
 
 
+    public void setUndergroundResources(Resource undergroundResources) {
+        this.undergroundResources = undergroundResources;
+    }
 
     public boolean build(ConstructionType constructionType, Inventory inventory){
         if(constructionType == null){
