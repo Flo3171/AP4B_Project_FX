@@ -43,30 +43,30 @@ public class Plot {
 
     private synchronized void generate(){
         Random r = new Random();
-        switch (r.nextInt((20))){
-            case 0,1:{
+        switch (r.nextInt((20))) {
+            case 0, 1 -> {
                 this.type = PlotType.WATER;
                 this.setUndergroundResources(new Resource(200, ResourceType.WATER));
 
             }
-            case 2, 3, 4:{
+            case 2, 3, 4 -> {
                 this.type = PlotType.GRASS;
                 this.construction = new Tree(this.position);
                 this.buildable = false;
             }
-            case 5, 6, 7, 8, 9:{
+            case 5, 6, 7, 8, 9 -> {
                 this.setUndergroundResources(new Resource(200, ResourceType.IRON));
                 this.type = PlotType.IRON_DEPOSIT;
             }
-            case 10, 11, 12, 13, 14:{
-                this.setUndergroundResources(new Resource(200,  ResourceType.COAL));
+            case 10, 11, 12, 13, 14 -> {
+                this.setUndergroundResources(new Resource(200, ResourceType.COAL));
                 this.type = PlotType.COAL_DEPOSIT;
             }
-            case 15, 16, 17:{
+            case 15, 16, 17 -> {
                 this.setUndergroundResources(new Resource(200, ResourceType.COPPER));
                 this.type = PlotType.COAL_DEPOSIT;
             }
-            case 18, 19:{
+            case 18, 19 -> {
                 this.setUndergroundResources(new Resource(200, ResourceType.URANIUM));
                 this.type = PlotType.URANIUM_DEPOSIT;
             }
