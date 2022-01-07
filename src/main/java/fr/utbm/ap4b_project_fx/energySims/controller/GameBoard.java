@@ -6,11 +6,8 @@ import fr.utbm.ap4b_project_fx.energySims.items.land.PlotType;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.ResourceType;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
-import fr.utbm.ap4b_project_fx.energySims.controller.InGameMenu;
-import fr.utbm.ap4b_project_fx.energySims.controller.MainMenu;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -27,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -42,11 +38,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.controlsfx.control.spreadsheet.Grid;
 
 public class GameBoard implements Initializable {
 
@@ -56,6 +50,51 @@ public class GameBoard implements Initializable {
     boolean isFirstClickDestroy=true;
     boolean contructionMode=false;
     boolean destructionMode=false;
+
+    private boolean CoalConstuct;
+    private boolean DrillerConstuct;
+    private boolean FarmConstuct;
+    private boolean HouseConstuct;
+    private boolean NuclearConstuct;
+    private boolean ParkConstuct;
+    private boolean PylonConstuct;
+    private boolean RoadConstuct;
+    private boolean SolarConstuct;
+    private boolean TreeConstuct;
+    private boolean WindConstuct;
+
+    @FXML
+    private Button BCoal;
+
+    @FXML
+    private Button BDriller;
+
+    @FXML
+    private Button BFarm;
+
+    @FXML
+    private Button BHouse;
+
+    @FXML
+    private Button BNuclear;
+
+    @FXML
+    private Button BPark;
+
+    @FXML
+    private Button BPylon;
+
+    @FXML
+    private Button BRoad;
+
+    @FXML
+    private Button BSolar;
+
+    @FXML
+    private Button BTree;
+
+    @FXML
+    private Button BWind;
 
     @FXML
     private Label wood;
@@ -192,6 +231,57 @@ public class GameBoard implements Initializable {
     };
 
     @FXML
+    void whatConstruct(ActionEvent event){
+        final Node source = (Node) event.getSource();
+        String id = source.getId();
+
+        if(id.equals("BCoal"))
+            CoalConstuct = true;
+        else
+            CoalConstuct = false;
+        if(id.equals("BDriller"))
+            DrillerConstuct = true;
+        else
+            DrillerConstuct = false;
+        if(id.equals("BFarm"))
+            FarmConstuct = true;
+        else
+            FarmConstuct = false;
+        if(id.equals("BHouse"))
+            HouseConstuct = true;
+        else
+            HouseConstuct = false;
+        if(id.equals("BNuclear"))
+            NuclearConstuct = true;
+        else
+            NuclearConstuct = false;
+        if(id.equals("BPark"))
+            ParkConstuct = true;
+        else
+            ParkConstuct = false;
+        if(id.equals("BPylon"))
+            PylonConstuct = true;
+        else
+            PylonConstuct = false;
+        if(id.equals("BRoad"))
+            RoadConstuct = true;
+        else
+            RoadConstuct = false;
+        if(id.equals("BSolar"))
+            SolarConstuct = true;
+        else
+            SolarConstuct = false ;
+        if(id.equals("BTree"))
+            TreeConstuct = true;
+        else
+            TreeConstuct = false;
+        if(id.equals("BWind"))
+            WindConstuct = true;
+        else
+            WindConstuct = false;
+    }
+
+    @FXML
     void ContructMod(ActionEvent event) {
 
         if(firstClickContruct==true && destructionMode==false)
@@ -199,12 +289,14 @@ public class GameBoard implements Initializable {
             contructionMode=true;
             firstClickContruct=false;
             Grid.setDisable(false);
+            Construction.setStyle("-fx-background-color: #2bef4f ;");
         }
         else
         {
             firstClickContruct=true;
             contructionMode=false;
             Grid.setDisable(true);
+            Construction.setStyle("-fx-background-color: #cefffd ;");
         }
 
     }
@@ -216,12 +308,14 @@ public class GameBoard implements Initializable {
             destructionMode=true;
             isFirstClickDestroy=false;
             Grid.setDisable(false);
+            destroy.setStyle("-fx-background-color: #2bef4f ;");
         }
         else
         {
             isFirstClickDestroy=true;
             destructionMode=false;
             Grid.setDisable(true);
+            destroy.setStyle("-fx-background-color: #cefffd ;");
         }
     }
 
