@@ -104,7 +104,7 @@
          </children></HBox>
    </top>
    <center>
-      <GridPane fx:id="Grid" disable="true" prefHeight="434.0" prefWidth="900.0" style="-fx-background-color: #96939a;">
+      <GridPane fx:id="Grid" disable="true" prefHeight="434.0" prefWidth="900.0" style="-fx-background-color: #7fb555;">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
