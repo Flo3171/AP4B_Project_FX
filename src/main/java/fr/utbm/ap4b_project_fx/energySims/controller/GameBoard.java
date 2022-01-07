@@ -226,7 +226,6 @@ public class GameBoard implements Initializable {
     }
 
 
-
     void buildingBuilder(Map m, Point pos, ConstructionType type)
     {
 
@@ -307,8 +306,8 @@ public class GameBoard implements Initializable {
                     buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
                 }catch (NullPointerException e){}
 
-
                 break;
+
 
             case URANIUM_DEPOSIT:
                 ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\uranium.png");
@@ -419,8 +418,8 @@ public class GameBoard implements Initializable {
                img10.setFitWidth(maxWidth);
                img10.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                Grid.add(img10,pos.getX(),pos.getY());
-
                break;
+
            case ROAD:
 
            case TREE:
