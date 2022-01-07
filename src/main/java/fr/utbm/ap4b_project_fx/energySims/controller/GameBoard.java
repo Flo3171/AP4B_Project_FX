@@ -162,6 +162,7 @@ public class GameBoard implements Initializable {
 
             if(contructionMode==true)
             {
+                /*
                 Stage stage =new Stage();
                 Label label = new Label();
                 FlowPane root = new FlowPane();
@@ -207,6 +208,23 @@ public class GameBoard implements Initializable {
                 stage.setTitle("ff");
                 stage.setScene(scene);
                 stage.show();
+                */
+                ConstructionType type = typeConstruct();
+                if (type != null){
+                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WOOD));
+                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COPPER));
+                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COAL));
+                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WATER));
+                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.IRON));
+                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.URANIUM));
+
+                    buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
+                    wood.setText(MainMenu.getMap().getInventory().toString());
+                    firstClickContruct=true;
+                    contructionMode=false;
+                    Grid.setDisable(true);
+                    Construction.setStyle("-fx-background-color: #cefffd ;");
+                }
 
             }
             else if (destructionMode==true)
@@ -354,9 +372,7 @@ public class GameBoard implements Initializable {
         }
     }
 
-
-    void buildingBuilder(Map m, Point pos, ConstructionType type)
-    {
+    void buildingBuilder(Map m, Point pos, ConstructionType type) {
 
         if(m.build(pos,type)==true)
         {
@@ -482,6 +498,33 @@ public class GameBoard implements Initializable {
      }
    }
 
+    ConstructionType typeConstruct(){
+
+        if(CoalConstuct) {
+            return ConstructionType.COAL_PLANT;
+        }else if(DrillerConstuct) {
+            return ConstructionType.DRILLER;
+        }else if(FarmConstuct) {
+            return ConstructionType.FARM;
+        }else if(HouseConstuct) {
+            return ConstructionType.HOUSE;
+        }else if(NuclearConstuct) {
+            return ConstructionType.NUCLEAR_PLANT;
+        }else if(ParkConstuct) {
+            return ConstructionType.ENTERTAINMENT_PARK;
+        }else if(PylonConstuct) {
+            return ConstructionType.PYLON;
+        }else if(RoadConstuct) {
+            return ConstructionType.ROAD;
+        }else if(SolarConstuct) {
+            return ConstructionType.SOLAR_PANEL;
+        }else if(TreeConstuct) {
+            return ConstructionType.TREE;
+        }else if(WindConstuct) {
+            return ConstructionType.WINDMILL;
+        }else
+            return null;
+    }
    void buildingDisplayer(ConstructionType type,Point pos)
    {
        switch (type)
