@@ -186,13 +186,14 @@ public class GameBoard implements Initializable {
             {
 
                 ConstructionType type = typeConstruct();
+                if (type != null){
+                    buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
+                }
 
             }
             else if (destructionMode==true)
             {
                 MainMenu.getMap().destroyConstruction(new Point(colIndex,rowIndex));
-
-
 
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="house");
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="oil");
@@ -218,7 +219,7 @@ public class GameBoard implements Initializable {
         LCopper.setText(res[6].getType()  + " : " + res[6].getAmount());
         LFood.setText(res[5].getType()  + " : " + res[5].getAmount());
         LIron.setText(res[3].getType()  + " : " + res[3].getAmount());
-        LNone.setText(res[0].getType()  + " : " + res[0].getAmount());
+        LNone.setText("Pollution : " + MainMenu.getMap().getPollution());
         LSatisfaction.setText(res[8].getType()  + " : " + res[8].getAmount());
         LUranium.setText(res[7].getType()  + " : " + res[7].getAmount());
         LWater.setText(res[4].getType()  + " : " + res[4].getAmount());
@@ -226,6 +227,7 @@ public class GameBoard implements Initializable {
     }
     @FXML
     void whatConstruct(ActionEvent event){
+        updateInfo();
         final Node source = (Node) event.getSource();
         String id = source.getId();
 
@@ -310,7 +312,7 @@ public class GameBoard implements Initializable {
 
     @FXML
     void ContructMod(ActionEvent event) {
-
+        updateInfo();
         if(firstClickContruct==true && destructionMode==false)
         {
             contructionMode=true;
@@ -352,6 +354,7 @@ public class GameBoard implements Initializable {
 
     @FXML
     void destroyMod(ActionEvent event) {
+        updateInfo();
         if(isFirstClickDestroy==true && contructionMode==false)
         {
             destructionMode=true;
