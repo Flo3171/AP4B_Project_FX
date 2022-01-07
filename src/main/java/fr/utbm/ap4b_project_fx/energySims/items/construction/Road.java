@@ -14,5 +14,6 @@ public class Road extends Construction {
 
     public Road(Point position) {
         super(position, ConstructionType.ROAD, new Resource(2, ResourceType.COAL));
+        this.setPollution(0);
     }
 }

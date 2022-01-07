@@ -9,6 +9,7 @@ public class Tree extends Construction{
 
     public Tree(Point position){
         super(position, ConstructionType.TREE, new Resource(1, ResourceType.WOOD));
+        this.setPollution(-2);
     }
 
     @Override

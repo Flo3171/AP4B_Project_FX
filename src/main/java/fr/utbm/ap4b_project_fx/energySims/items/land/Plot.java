@@ -188,6 +188,15 @@ public class Plot {
     }
 
     public void dry(){
-        this.type = PlotType.DRY_PLOT;
+        this.type = PlotType.GRASS;
+    }
+
+    public double getPollution(){
+        if (this.getConstruction() != null) {
+            return this.getConstruction().getPollution();
+        }
+        else{
+            return 0;
+        }
     }
 }

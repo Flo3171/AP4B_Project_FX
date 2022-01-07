@@ -25,6 +25,7 @@ public class Building extends Construction implements Runnable {
         this.type = type;
         this.buildingParameter = parameterMap.getParameter(type);
         this.setConstructionCost(buildingParameter.getBuildingCost());
+        this.setPollution(this.buildingParameter.getPollution());
         this.inventory = inventory;
     }
 

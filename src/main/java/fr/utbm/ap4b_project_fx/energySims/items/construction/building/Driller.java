@@ -17,8 +17,7 @@ public class Driller extends Building{
 
     @Override
     protected synchronized void produce() {
-        if (this.getPylonLink() != null && this.getAvailableElectricity() + this.getBuildingParameter().getElectricityProduction() >= 0 && this.plot.getUndergroundResources() != null && this.plot.getUndergroundResources().getAmount() >= 1){
-            this.getPylonLink().addElectricity(this.getBuildingParameter().getElectricityProduction());
+        if (this.plot.getUndergroundResources() != null && this.plot.getUndergroundResources().getAmount() >= 1){
             Resource resource = new Resource(1, this.plot.getUndergroundResources().getType());
             this.getInventory().addResource(resource);
             this.plot.getUndergroundResources().addResource(-1);

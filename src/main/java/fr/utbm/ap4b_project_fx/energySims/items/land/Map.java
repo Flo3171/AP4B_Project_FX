@@ -228,5 +228,16 @@ public class Map {
         return roadFound;
     }
 
+    public synchronized double getPollution(){
+        double pollution = 0;
+        for (int j = 0; j < this.mapSize.getY(); j++) {
+            for (int i = 0; i < this.mapSize.getX(); i++) {
+                pollution += this.getCasesTable(i, j).getPollution();
+            }
+
+        }
+        return pollution;
+    }
+
 
 }
