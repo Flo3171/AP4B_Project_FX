@@ -12,6 +12,8 @@ public class Inventory {
             this.resources[i] = new Resource(0, t);
             i ++;
         }
+        this.addResource(new Resource(30, ResourceType.IRON));
+        this.addResource(new Resource(20,  ResourceType.COAL));
     }
 
     public Inventory(String string){

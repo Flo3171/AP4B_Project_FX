@@ -39,6 +39,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -373,7 +374,7 @@ public class GameBoard implements Initializable {
         {
             m.build(pos,type);
             buildingDisplayer(type,pos);
-            System.out.printf("GREAT SUCESS");
+            LError.setText("");
         }
         else
         {
@@ -601,6 +602,7 @@ public class GameBoard implements Initializable {
                img8.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                Grid.add(img8,pos.getX(),pos.getY());
                break;
+
            case TREE:
                ImageView img9 = new ImageView(url+"\\src\\main\\resources\\images\\Tree.png");
                img9.setId("tree");
@@ -608,6 +610,31 @@ public class GameBoard implements Initializable {
                img9.setFitWidth(maxWidth);
                img9.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                Grid.add(img9,pos.getX(),pos.getY());
+               break;
+
+           case FARM:
+               ImageView img11 = new ImageView(url+"\\src\\main\\resources\\images\\Farm.png");
+               img11.setId("tree");
+               img11.setFitHeight(maxHeight);
+               img11.setFitWidth(maxWidth);
+               img11.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img11,pos.getX(),pos.getY());
+               break;
+
+           case ENTERTAINMENT_PARK:
+               Random rand = new Random();
+               ImageView img12;
+               if(rand.nextInt(2)==0){
+                   img12 = new ImageView(url+"\\src\\main\\resources\\images\\Park1.png");
+               }else {
+                   img12 = new ImageView(url+"\\src\\main\\resources\\images\\Park2.png");
+               }
+               img12.setId("tree");
+               img12.setFitHeight(maxHeight);
+               img12.setFitWidth(maxWidth);
+               img12.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img12,pos.getX(),pos.getY());
+               break;
 
            default:
 
