@@ -176,13 +176,13 @@ public class GameBoard implements Initializable {
 
 
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="house");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="oil");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="nuclear");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="wind");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="coal");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="drill");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="pylon");
-                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="tree");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="oil");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="nuclear");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="wind");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="coal");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="drill");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="pylon");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="tree");
 
 
             }
@@ -245,7 +245,7 @@ public class GameBoard implements Initializable {
 
 
    void mapDisplayer(Map m){
-
+       System.out.printf(m.toString());
        Point g =m.getMapSize();
        int w=g.getX();
        int h = g.getY();
@@ -255,8 +255,8 @@ public class GameBoard implements Initializable {
 
         switch (type) {
 
-            case DIRT:
-                ImageView img = new ImageView(url+"\\src\\main\\resources\\images\\dirt.JPG");
+            case IRON_DEPOSIT:
+                ImageView img = new ImageView(url+"\\src\\main\\resources\\images\\iron.JPG");
                 img.setFitHeight(maxHeight);
                 img.setFitWidth(maxWidth);
                 img.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -268,9 +268,9 @@ public class GameBoard implements Initializable {
 
                 break;
 
-            case CLAY:
+            case COAL_DEPOSIT:
 
-                ImageView img2 = new ImageView(url+"\\src\\main\\resources\\images\\clay.JPG");
+                ImageView img2 = new ImageView(url+"\\src\\main\\resources\\images\\coal_s.png");
                 img2.setFitHeight(maxHeight);
                 img2.setFitWidth(maxWidth);
                 img2.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -297,8 +297,8 @@ public class GameBoard implements Initializable {
 
                 break;
 
-            case SAND:
-                ImageView img4 = new ImageView(url+"\\src\\main\\resources\\images\\sand.jpg");
+            case COPPER_DEPOSIT:
+                ImageView img4 = new ImageView(url+"\\src\\main\\resources\\images\\copper.jpg");
                 img4.setFitHeight(maxHeight);
                 img4.setFitWidth(maxWidth);
                 img4.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -310,8 +310,8 @@ public class GameBoard implements Initializable {
 
                 break;
 
-            case STONE:
-                ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\stone.jpg");
+            case URANIUM_DEPOSIT:
+                ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\uranium.png");
                 img5.setFitHeight(maxHeight);
                 img5.setFitWidth(maxWidth);
                 img5.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -336,9 +336,14 @@ public class GameBoard implements Initializable {
                 break;
 
             case DRY_PLOT:
-                Label l7=new Label();
-                l7.setText("DRY_plot");
-                Grid.add(l7,i,j);
+                ImageView img7 = new ImageView(url+"\\src\\main\\resources\\images\\sand.jpg");
+                img7.setFitHeight(maxHeight);
+                img7.setFitWidth(maxWidth);
+                img7.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+                Grid.add(img7,i,j);
+                try {
+                    buildingDisplayer(m.getCasesTable(i,j).getConstruction().getConstructionType(),new Point(i,j));
+                }catch (NullPointerException e){}
                 break;
 
             default:
@@ -388,15 +393,6 @@ public class GameBoard implements Initializable {
 
            case SOLAR_PANEL:
 
-           case OIL_PLANT:
-               ImageView img5 = new ImageView(url+"\\src\\main\\resources\\images\\oil.png");
-               img5.setId("oil");
-               img5.setFitHeight(maxHeight);
-               img5.setFitWidth(maxWidth);
-               img5.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-               Grid.add(img5,pos.getX(),pos.getY());
-
-               break;
            case NUCLEAR_PLANT:
                ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\nuclear.png");
                img6.setId("nuclear");
@@ -415,9 +411,6 @@ public class GameBoard implements Initializable {
                Grid.add(img7,pos.getX(),pos.getY());
                break;
 
-           case GAZ_PLANT:
-
-           case PIPE:
 
            case COAL_PLANT:
                ImageView img10 = new ImageView(url+"\\src\\main\\resources\\images\\coal.png");
