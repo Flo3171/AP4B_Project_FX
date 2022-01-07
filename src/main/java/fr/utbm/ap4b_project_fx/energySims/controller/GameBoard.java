@@ -220,10 +220,6 @@ public class GameBoard implements Initializable {
 
                     buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
                     wood.setText(MainMenu.getMap().getInventory().toString());
-                    firstClickContruct=true;
-                    contructionMode=false;
-                    Grid.setDisable(true);
-                    Construction.setStyle("-fx-background-color: #cefffd ;");
                 }
 
             }
@@ -257,80 +253,80 @@ public class GameBoard implements Initializable {
 
         if(id.equals("BCoal") && !CoalConstuct) {
             CoalConstuct = true;
-            BCoal.setStyle("-fx-background-color: #2bef4f ;");
+            BCoal.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             CoalConstuct = false;
-            BCoal.setStyle("-fx-background-color: #cefffd ;");
+            BCoal.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BDriller") && !DrillerConstuct) {
             DrillerConstuct = true;
-            BDriller.setStyle("-fx-background-color: #2bef4f ;");
+            BDriller.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             DrillerConstuct = false;
-            BDriller.setStyle("-fx-background-color: #cefffd ;");
+            BDriller.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BFarm") && !FarmConstuct) {
             FarmConstuct = true;
-            BFarm.setStyle("-fx-background-color: #2bef4f ;");
+            BFarm.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             FarmConstuct = false;
-            BFarm.setStyle("-fx-background-color: #cefffd ;");
+            BFarm.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BHouse") && !HouseConstuct) {
             HouseConstuct = true;
-            BHouse.setStyle("-fx-background-color: #2bef4f ;");
+            BHouse.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             HouseConstuct = false;
-            BHouse.setStyle("-fx-background-color: #cefffd ;");
+            BHouse.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BNuclear") && !NuclearConstuct) {
             NuclearConstuct = true;
-            BNuclear.setStyle("-fx-background-color: #2bef4f ;");
+            BNuclear.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             NuclearConstuct = false;
-            BNuclear.setStyle("-fx-background-color: #cefffd ;");
+            BNuclear.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BPark") && !ParkConstuct) {
             ParkConstuct = true;
-            BPark.setStyle("-fx-background-color: #2bef4f ;");
+            BPark.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             ParkConstuct = false;
-            BPark.setStyle("-fx-background-color: #cefffd ;");
+            BPark.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BPylon") && !PylonConstuct) {
             PylonConstuct = true;
-            BPylon.setStyle("-fx-background-color: #2bef4f ;");
+            BPylon.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             PylonConstuct = false;
-            BPylon.setStyle("-fx-background-color: #cefffd ;");
+            BPylon.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BRoad") && !RoadConstuct) {
             RoadConstuct = true;
-            BRoad.setStyle("-fx-background-color: #2bef4f ;");
+            BRoad.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             RoadConstuct = false;
-            BRoad.setStyle("-fx-background-color: #cefffd ;");
+            BRoad.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BSolar") && !SolarConstuct) {
             SolarConstuct = true;
-            BSolar.setStyle("-fx-background-color: #2bef4f ;");
+            BSolar.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             SolarConstuct = false;
-            BSolar.setStyle("-fx-background-color: #cefffd ;");
+            BSolar.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BTree") && !TreeConstuct) {
             TreeConstuct = true;
-            BTree.setStyle("-fx-background-color: #2bef4f ;");
+            BTree.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             TreeConstuct = false;
-            BTree.setStyle("-fx-background-color: #cefffd ;");
+            BTree.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         if(id.equals("BWind") && !WindConstuct) {
             WindConstuct = true;
-            BWind.setStyle("-fx-background-color: #2bef4f ;");
+            BWind.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }else {
             WindConstuct = false;
-            BWind.setStyle("-fx-background-color: #cefffd ;");
+            BWind.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
     }
 
@@ -342,14 +338,36 @@ public class GameBoard implements Initializable {
             contructionMode=true;
             firstClickContruct=false;
             Grid.setDisable(false);
-            Construction.setStyle("-fx-background-color: #2bef4f ;");
+            Construction.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
+            BCoal.setDisable(false);
+            BDriller.setDisable(false);
+            BFarm.setDisable(false);
+            BHouse.setDisable(false);
+            BNuclear.setDisable(false);
+            BPark.setDisable(false);
+            BPylon.setDisable(false);
+            BRoad.setDisable(false);
+            BSolar.setDisable(false);
+            BTree.setDisable(false);
+            BWind.setDisable(false);
         }
         else
         {
             firstClickContruct=true;
             contructionMode=false;
             Grid.setDisable(true);
-            Construction.setStyle("-fx-background-color: #cefffd ;");
+            Construction.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
+            BCoal.setDisable(true);
+            BDriller.setDisable(true);
+            BFarm.setDisable(true);
+            BHouse.setDisable(true);
+            BNuclear.setDisable(true);
+            BPark.setDisable(true);
+            BPylon.setDisable(true);
+            BRoad.setDisable(true);
+            BSolar.setDisable(true);
+            BTree.setDisable(true);
+            BWind.setDisable(true);
         }
 
     }
@@ -361,14 +379,14 @@ public class GameBoard implements Initializable {
             destructionMode=true;
             isFirstClickDestroy=false;
             Grid.setDisable(false);
-            destroy.setStyle("-fx-background-color: #2bef4f ;");
+            destroy.setStyle("-fx-background-color: #2bef4f ; -fx-border-color: black; -fx-border-radius: 4;");
         }
         else
         {
             isFirstClickDestroy=true;
             destructionMode=false;
             Grid.setDisable(true);
-            destroy.setStyle("-fx-background-color: #cefffd ;");
+            destroy.setStyle("-fx-background-color: #cefffd ; -fx-border-color: black; -fx-border-radius: 4;");
         }
     }
 

@@ -15,24 +15,19 @@
    <right>
       <VBox maxWidth="60.0" minWidth="60.0" prefHeight="550.0" prefWidth="60.0" BorderPane.alignment="CENTER">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" style="-fx-background-color: #cefffd;" text="B1">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="300.0" prefWidth="60.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="M&#10;E&#10;N&#10;U" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="24.0" />
+                  <Font name="Arial Black" size="13.0" />
                </font>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="60.0" style="-fx-background-color: #cefffd;" text="B1">
+            <Button fx:id="destroy" contentDisplay="CENTER" mnemonicParsing="false" onAction="#destroyMod" prefHeight="300.0" prefWidth="60.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="D&#10;E&#10;S&#10;T&#10;R&#10;O&#10;Y" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="24.0" />
+                  <Font name="Arial Black" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="destroy" contentDisplay="CENTER" mnemonicParsing="false" onAction="#destroyMod" prefHeight="200.0" prefWidth="60.0" style="-fx-background-color: #cefffd;" text="D">
+            <Button fx:id="Construction" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ContructMod" prefHeight="300.0" prefWidth="60.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="B&#10;U&#10;I&#10;L&#10;D" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="24.0" />
-               </font>
-            </Button>
-            <Button fx:id="Construction" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ContructMod" prefHeight="200.0" prefWidth="60.0" style="-fx-background-color: #cefffd;" text="B">
-               <font>
-                  <Font size="24.0" />
+                  <Font name="Arial Black" size="13.0" />
                </font>
             </Button>
          </children></VBox>
@@ -40,59 +35,59 @@
    <bottom>
       <HBox alignment="BOTTOM_CENTER" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="BTree" contentDisplay="CENTER" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="TREE" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BTree" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="TREE" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BPylon" contentDisplay="CENTER" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="PYLON" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BPylon" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="PYLON" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BRoad" contentDisplay="CENTER" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="ROAD" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BRoad" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="ROAD" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BHouse" contentDisplay="CENTER" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="HOUSE" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BHouse" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="HOUSE" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BFarm" contentDisplay="CENTER" layoutX="850.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="FARM" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BFarm" contentDisplay="CENTER" disable="true" layoutX="850.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="FARM" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BPark" contentDisplay="CENTER" layoutX="950.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="PARK" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BPark" contentDisplay="CENTER" disable="true" layoutX="950.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="PARK" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BNuclear" contentDisplay="CENTER" layoutX="1050.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="NUCLEAR PLANT" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BNuclear" contentDisplay="CENTER" disable="true" layoutX="1050.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="NUCLEAR PLANT" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BCoal" contentDisplay="CENTER" layoutX="1107.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="COAL PLANT" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BCoal" contentDisplay="CENTER" disable="true" layoutX="1107.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="COAL PLANT" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BWind" contentDisplay="CENTER" layoutX="1130.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="WIND TURBINE" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BWind" contentDisplay="CENTER" disable="true" layoutX="1130.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="WIND TURBINE" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BSolar" contentDisplay="CENTER" layoutX="1005.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="SOLAR PANEL" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="BSolar" contentDisplay="CENTER" disable="true" layoutX="1005.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="SOLAR PANEL" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="BDriller" contentDisplay="CENTER" layoutX="1162.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd;" text="DRILLER" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+            <Button fx:id="BDriller" contentDisplay="CENTER" disable="true" layoutX="1162.0" layoutY="10.0" mnemonicParsing="false" onAction="#whatConstruct" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cefffd; -fx-border-color: black; -fx-border-radius: 4;" text="DRILLER" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                <font>
-                  <Font name="Golden Arrow" size="20.0" />
+                  <Font name="Arial Black" size="16.0" />
                </font>
             </Button>
          </children></HBox>
