@@ -10,7 +10,7 @@ import fr.utbm.ap4b_project_fx.energySims.utils.Point;
 public class Main {
 
     public static void main(String[] args){
-        Map m = new Map(new Point(2, 2), true);
+        Map m = new Map(new Point(2, 1), true);
 
         m.getInventory().addResource(new Resource(10000, ResourceType.WOOD));
         m.getInventory().addResource(new Resource(10000, ResourceType.COPPER));
@@ -18,13 +18,14 @@ public class Main {
         m.getInventory().addResource(new Resource(10000, ResourceType.WATER));
         m.getInventory().addResource(new Resource(10000, ResourceType.IRON));
 
+        m.build(new Point(0, 0), ConstructionType.ROAD);
 
-        m.build(new Point(0,0), ConstructionType.PYLON);
+        /*m.build(new Point(0,0), ConstructionType.PYLON);
         m.build(new Point(1, 0), ConstructionType.HOUSE);
         m.build(new Point(1,1), ConstructionType.WINDMILL);
         m.build(new Point(0, 1), ConstructionType.DRILLER);
 
-        m.getCasesTable(0, 1).setUndergroundResources(new Resource( 100, ResourceType.COAL));
+        m.getCasesTable(0, 1).setUndergroundResources(new Resource( 100, ResourceType.COAL));*/
 
         System.out.println(m);
 

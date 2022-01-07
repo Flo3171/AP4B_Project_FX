@@ -2,7 +2,6 @@ package fr.utbm.ap4b_project_fx.energySims.items.land;
 
 
 import fr.utbm.ap4b_project_fx.energySims.items.construction.ConstructionType;
-import fr.utbm.ap4b_project_fx.energySims.items.construction.RoadNetwork;
 import fr.utbm.ap4b_project_fx.energySims.items.construction.connector.ElectricalNetwork;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.Inventory;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
@@ -11,6 +10,7 @@ import fr.utbm.ap4b_project_fx.energySims.utils.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The class Map represents the map of the game, it contents all the Plot of the map, the inventory and the list of the electrical Networks
@@ -46,10 +46,6 @@ public class Map {
      * List of all the ElectricalNetwork found on the map
      */
     private List<ElectricalNetwork> electricalNetworks;
-    /**
-     * List of all the RoadNetwork found on the map
-     */
-    private List<RoadNetwork> roadNetworks;
 
 
     /**
@@ -60,8 +56,8 @@ public class Map {
      *                  set to True for a full grass and empty map
      */
     public Map(Point mapSize, boolean debug){
-        //this.inventory = new Inventory();
-
+        Random r = new Random();
+        this.inventory = new Inventory();
         this.mapSize = mapSize;
         this.casesTable = new Plot[this.mapSize.getX()][this.mapSize.getY()];
         for (int i = 0; i < this.mapSize.getY(); i++) {
@@ -70,22 +66,11 @@ public class Map {
             }
         }
         this.electricalNetworks = new ArrayList<>();
-        this.roadNetworks = new ArrayList<RoadNetwork>();
 
-        this.build(new Point(0,0),ConstructionType.ROAD); //Starter point
-        for (int i = 0; i < 4; i++){
-            boolean built = false;
-            while(!built) {
-                double x = Math.random() * (this.mapSize.getX() - 0);
-                double y = Math.random() * (this.mapSize.getY() - 0);
-                if (this.build(new Point((int) x, (int) y),ConstructionType.ROAD)) {
-                    built = true;
-                }
-                break; //POUR L'INSTANT
-            }
-        }
-
-        this.inventory = new Inventory();
+        boolean result;
+        do {
+            result = this.casesTable[r.nextInt(this.mapSize.getX())][r.nextInt(this.mapSize.getY())].build(ConstructionType.ROAD, null);
+        }while (!result);
     }
 
 
@@ -177,9 +162,15 @@ public class Map {
      *                  False else
      */
     public synchronized boolean build(Point position, ConstructionType constructionType) {
-        boolean result = this.casesTable[position.getX()][position.getY()].build(constructionType, this.inventory);
-        this.updateNetwork();
-        return result;
+        if (!((constructionType != ConstructionType.TREE && constructionType  != ConstructionType.PYLON) && !this.isRoadAround(position))){
+            boolean result = this.casesTable[position.getX()][position.getY()].build(constructionType, this.inventory);
+            this.updateNetwork();
+            return result;
+        }
+        else{
+            return false;
+        }
+
 
     }
 
@@ -194,7 +185,6 @@ public class Map {
             }
         }
         this.electricalNetworks = ElectricalNetwork.updateNetwork(this);
-        this.roadNetworks = RoadNetwork.updateNetwork(this);
     }
 
 
@@ -219,6 +209,23 @@ public class Map {
                 this.casesTable[j][i].close();
             }
         }
+    }
+
+    public synchronized boolean isPointInMap(Point position){
+        return position.getX() >= 0 && position.getX() < this.getMapSize().getX() && position.getY() >= 0 && position.getY() < this.getMapSize().getY();
+    }
+
+    public synchronized boolean isRoadAround(Point position){
+        boolean roadFound = false;
+        for (int j = -1; j <= 1; j++) {
+            for (int i = -1; i <= 1; i++) {
+                Point adjacentPoint = new Point(position.getX() + i, position.getY() + j);
+                if (this.isPointInMap(adjacentPoint) && (i != 0 || j != 0) && this.getCasesTable(adjacentPoint.getX(), adjacentPoint.getY()).getConstruction() != null && this.getCasesTable(adjacentPoint.getX(), adjacentPoint.getY()).getConstruction().getConstructionType() == ConstructionType.ROAD){
+                    roadFound = true;
+                }
+            }
+        }
+        return roadFound;
     }
 
 
