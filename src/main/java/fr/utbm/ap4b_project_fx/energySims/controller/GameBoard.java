@@ -3,7 +3,9 @@ package fr.utbm.ap4b_project_fx.energySims.controller;
 
 import fr.utbm.ap4b_project_fx.energySims.items.construction.ConstructionType;
 import fr.utbm.ap4b_project_fx.energySims.items.land.Map;
+import fr.utbm.ap4b_project_fx.energySims.items.land.Plot;
 import fr.utbm.ap4b_project_fx.energySims.items.land.PlotType;
+import fr.utbm.ap4b_project_fx.energySims.items.ressource.Inventory;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.Resource;
 import fr.utbm.ap4b_project_fx.energySims.items.ressource.ResourceType;
 import fr.utbm.ap4b_project_fx.energySims.utils.Point;
@@ -42,6 +44,8 @@ import java.util.ResourceBundle;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+
 
 public class GameBoard implements Initializable {
 
