@@ -147,12 +147,17 @@ public class Plot {
 
             }
 
+            /*if (newConstruction.getConstructionType() == ConstructionType.ROAD){ //Block construction if not adjacent
+                if (newConstruction.build(this.position) == false) {
+                    return false;
+                };*
+            }*/
+
             if (inventory == null || inventory.useResource(newConstruction.getConstructionCost())){
                 this.construction = newConstruction;
                 if (this.construction instanceof Building){
                     this.buildingThread = new Thread((Building) this.construction);
                     this.buildingThread.setName("Thread_" + constructionType + this.position.toString());
-                    this.buildingThread.start();
                 }
                 this.buildable = false;
                 return true;
@@ -165,6 +170,9 @@ public class Plot {
     public void updateNeighbour(Map map){
         if (this.construction != null && this.construction instanceof Pylon){
             ((Pylon) this.construction).updateNeighbours(map);
+        }
+        if (this.construction != null && this.construction instanceof Road){
+            ((Road) this.construction).updateNeighbours(map);
         }
     }
 
