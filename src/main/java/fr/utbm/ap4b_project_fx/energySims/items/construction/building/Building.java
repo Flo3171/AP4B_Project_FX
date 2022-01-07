@@ -83,21 +83,6 @@ public class Building extends Construction implements Runnable {
         this.running = false;
     }
 
-    @Override
-    public boolean build(Point position) {
-        return true;
-    }
-
-    @Override
-    public boolean update() {
-        return true;
-    }
-
-    @Override
-    public boolean destroy() {
-        return true;
-    }
-
     public void setPylonLink(Pylon pylonLink) {
         this.pylonLink = pylonLink;
     }

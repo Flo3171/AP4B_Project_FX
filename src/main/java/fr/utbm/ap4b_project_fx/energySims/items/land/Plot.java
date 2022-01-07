@@ -46,7 +46,7 @@ public class Plot {
         switch (r.nextInt((20))) {
             case 0, 1 -> {
                 this.type = PlotType.WATER;
-                this.setUndergroundResources(new Resource(200, ResourceType.WATER));
+                this.setUndergroundResources(new Resource(400, ResourceType.WATER));
 
             }
             case 2, 3, 4 -> {
@@ -169,17 +169,11 @@ public class Plot {
     }
 
     public boolean destroy(Inventory inventory){
-
-        boolean result = this.construction.destroy();
-        if (result){
-            inventory.addResource(this.construction.getDestructionReward());
+            boolean result = inventory.addResource(this.construction.getDestructionReward());
             this.buildable = true;
             this.close();
             this.construction = null;
-
-        }
-
-        return result;
+            return result;
 
     }
 

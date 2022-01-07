@@ -70,21 +70,6 @@ public class Pylon extends Construction {
         return buildingNeighbours;
     }
 
-    @Override
-    public boolean build(Point position) {
-        return true;
-    }
-
-    @Override
-    public boolean update() {
-        return true;
-    }
-
-    @Override
-    public boolean destroy() {
-        return true;
-    }
-
     public boolean addElectricity(double electricityAmount){
         return this.network.addElectricity(electricityAmount);
     }

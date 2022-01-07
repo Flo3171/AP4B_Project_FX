@@ -12,21 +12,6 @@ public class Tree extends Construction{
     }
 
     @Override
-    public boolean build(Point position) {
-        return true;
-    }
-
-    @Override
-    public boolean update() {
-        return true;
-    }
-
-    @Override
-    public boolean destroy() {
-        return true;
-    }
-
-    @Override
     public Resource getDestructionReward() {
         return new Resource(11, ResourceType.WOOD);
     }

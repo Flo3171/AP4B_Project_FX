@@ -41,12 +41,4 @@ public class BuildingParameter {
     public Resource getOutput() {
         return output;
     }
-
-    public int getInhabitantAmount() {
-        return inhabitantAmount;
-    }
-
-    public int getWorkerAmount() {
-        return workerAmount;
-    }
 }
