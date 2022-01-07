@@ -22,7 +22,7 @@ public class Driller extends Building{
             Resource resource = new Resource(1, this.plot.getUndergroundResources().getType());
             this.getInventory().addResource(resource);
             this.plot.getUndergroundResources().addResource(-1);
-            if (this.plot.getType() == PlotType.WATER && this.plot.getUndergroundResources().getAmount() <= 0){
+            if (this.plot.getUndergroundResources().getAmount() <= 0){
                 this.plot.dry();
             }
             System.out.println(this + " Mine : " + resource + " Produce : " + resource + " Electricity : " + this.getBuildingParameter().getElectricityProduction());

@@ -20,11 +20,21 @@ public class BuildingParameterMap {
                 new Resource(10, ResourceType.WOOD),
                 2,
                 -10,
-                new Resource(2, ResourceType.WATER),
+                new Resource(1, ResourceType.FOOD),
                 new Resource(5, ResourceType.SATISFACTION),
                 4,
                 0
         ));
+
+        this.parameter.put(ConstructionType.FARM, new BuildingParameter(
+                new Resource(30, ResourceType.WOOD),
+                5,
+                -20,
+                new Resource(1, ResourceType.WATER),
+                new Resource(5, ResourceType.FOOD),
+                0,
+                4
+                ));
 
         this.parameter.put(ConstructionType.NUCLEAR_PLANT, new BuildingParameter(
                 new Resource(200, ResourceType.COPPER),
@@ -64,6 +74,16 @@ public class BuildingParameterMap {
                 new Resource(0, ResourceType.NONE),
                 0,
                 2
+        ));
+
+        this.parameter.put(ConstructionType.ENTERTAINMENT_PARK, new BuildingParameter(
+                new Resource(100, ResourceType.IRON),
+                10,
+                -100,
+                new Resource(0, ResourceType.NONE),
+                new Resource(50, ResourceType.SATISFACTION),
+                0,
+                20
         ));
 
         this.parameter.put(ConstructionType.DRILLER, new BuildingParameter(

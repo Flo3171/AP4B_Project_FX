@@ -6,6 +6,8 @@ public enum ConstructionType {
     PYLON,
     ROAD,
     HOUSE,
+    FARM,
+    ENTERTAINMENT_PARK,
     NUCLEAR_PLANT,
     COAL_PLANT,
     WINDMILL,
@@ -19,6 +21,8 @@ public enum ConstructionType {
             case PYLON -> {return "Py";}
             case ROAD -> {return "Ro";}
             case HOUSE -> {return "Ho";}
+            case FARM -> {return "Fa";}
+            case ENTERTAINMENT_PARK -> {return "EP";}
             case NUCLEAR_PLANT -> {return "NP";}
             case COAL_PLANT -> {return "CP";}
             case WINDMILL -> {return "Wi";}
@@ -39,6 +43,10 @@ public enum ConstructionType {
             return ROAD;
         } else if (name.equals(HOUSE.toString())) {
             return HOUSE;
+        } else if (name.equals(FARM.toString())) {
+            return FARM;
+        } else if (name.equals(ENTERTAINMENT_PARK.toString())){
+            return ENTERTAINMENT_PARK;
         } else if (name.equals(NUCLEAR_PLANT.toString())) {
             return NUCLEAR_PLANT;
         } else if (name.equals(COAL_PLANT.toString())) {

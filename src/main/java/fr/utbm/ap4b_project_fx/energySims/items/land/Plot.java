@@ -137,10 +137,12 @@ public class Plot {
                 case PYLON -> newConstruction = new Pylon(this.position);
                 case HOUSE -> newConstruction = new House(this.position, inventory);
                 case NUCLEAR_PLANT -> newConstruction = new NuclearPlant(this.position, inventory);
+                case FARM -> newConstruction = new Farm(this.position, inventory);
                 case COAL_PLANT -> newConstruction = new CoalPlant(this.position, inventory);
                 case WINDMILL -> newConstruction = new WindMill(this.position, inventory);
                 case SOLAR_PANEL -> newConstruction = new SolarPanel(this.position, inventory);
                 case DRILLER -> newConstruction = new Driller(this.position, inventory, this);
+                case ENTERTAINMENT_PARK -> newConstruction = new EntertainmentPark(this.position, inventory);
                 default -> newConstruction = new Road((this.position));
 
             }

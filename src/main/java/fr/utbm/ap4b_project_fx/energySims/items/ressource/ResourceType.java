@@ -5,9 +5,10 @@ public enum ResourceType {
     WOOD,
     COAL,
     IRON,
+    WATER,
+    FOOD,
     COPPER,
     URANIUM,
-    WATER,
     SATISFACTION;
 
     @Override
@@ -15,6 +16,7 @@ public enum ResourceType {
         switch (this){
             case COAL ->{return "Coal";}
             case IRON -> {return "Iron";}
+            case FOOD -> {return "FOOD";}
             case COPPER -> {return "Copper";}
             case URANIUM -> {return "Uranium";}
             case WATER -> {return "Water";}
@@ -28,8 +30,10 @@ public enum ResourceType {
     public static ResourceType getResourceType(String name){
         if (name.equals(COAL.toString())){
             return COAL;
-        } else if (name.equals(IRON.toString())){
+        } else if (name.equals(IRON.toString())) {
             return IRON;
+        } else if (name.equals(FOOD.toString())){
+            return FOOD;
         } else if (name.equals(COPPER.toString())){
             return COPPER;
         } else if (name.equals(URANIUM.toString())){
