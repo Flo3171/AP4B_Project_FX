@@ -50,12 +50,4 @@ public abstract class Construction{
         return constructionType;
     }
 
-
-
-    public abstract boolean build(Point position);
-
-    public abstract boolean update();
-
-    public abstract boolean destroy();
-
 }
