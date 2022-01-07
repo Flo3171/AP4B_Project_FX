@@ -103,7 +103,34 @@ public class GameBoard implements Initializable {
     private Button BWind;
 
     @FXML
-    private Label wood;
+    private Label LCoal;
+
+    @FXML
+    private Label LCopper;
+
+    @FXML
+    private Label LError;
+
+    @FXML
+    private Label LFood;
+
+    @FXML
+    private Label LIron;
+
+    @FXML
+    private Label LNone;
+
+    @FXML
+    private Label LSatisfaction;
+
+    @FXML
+    private Label LUranium;
+
+    @FXML
+    private Label LWater;
+
+    @FXML
+    private Label LWood;
 
     @FXML
     private GridPane Grid;
@@ -124,28 +151,22 @@ public class GameBoard implements Initializable {
 
 
     @FXML
-    void menu(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.M) {
+    void menu() throws IOException {
 
-            try {
-
-                URL fxmlURL = getClass().getResource("/fr/utbm/info/ap4b_project_fx/InGameMenu.fxml");
-                FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-                Parent root = fxmlLoader.load();
+        URL fxmlURL = getClass().getResource("/fr/utbm/info/ap4b_project_fx/InGameMenu.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+        Parent root = fxmlLoader.load();
 
 
-                Stage stage = new Stage();
+        Stage stage = new Stage();
 
-                stage.setResizable(false);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setTitle("Wejgame");
-                stage.setScene(new Scene(root));
-                stage.setFullScreen(false);
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Wejgame");
+        stage.setScene(new Scene(root));
+        stage.setFullScreen(false);
+        stage.showAndWait();
+
     }
 
 
@@ -219,7 +240,7 @@ public class GameBoard implements Initializable {
                     MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.URANIUM));
 
                     buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
-                    wood.setText(MainMenu.getMap().getInventory().toString());
+
                 }
 
             }
@@ -241,11 +262,24 @@ public class GameBoard implements Initializable {
 
 
             }
+            updateInfo();
 
         }
 
     };
 
+    void updateInfo(){
+        Resource res[] = MainMenu.getMap().getInventory().getResources();
+        LCoal.setText(res[2].getType()  + " : " + res[2].getAmount());
+        LCopper.setText(res[6].getType()  + " : " + res[6].getAmount());
+        LFood.setText(res[5].getType()  + " : " + res[5].getAmount());
+        LIron.setText(res[3].getType()  + " : " + res[3].getAmount());
+        LNone.setText(res[0].getType()  + " : " + res[0].getAmount());
+        LSatisfaction.setText(res[8].getType()  + " : " + res[8].getAmount());
+        LUranium.setText(res[7].getType()  + " : " + res[7].getAmount());
+        LWater.setText(res[4].getType()  + " : " + res[4].getAmount());
+        LWood.setText(res[1].getType()  + " : " + res[1].getAmount());
+    }
     @FXML
     void whatConstruct(ActionEvent event){
         final Node source = (Node) event.getSource();
@@ -400,7 +434,7 @@ public class GameBoard implements Initializable {
         }
         else
         {
-            System.out.printf("you cant PUT THAT HERE WTF BRO");
+            LError.setText("impossible à placer");
         }
     }
 

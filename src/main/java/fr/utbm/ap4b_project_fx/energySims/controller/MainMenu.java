@@ -83,6 +83,8 @@ private static Map m=new Map(new Point(26, 14),false);
             stage.setTitle("Wejgame");
             stage.setScene(new Scene(root));
             stage.setFullScreen(true);
+            Stage st = (Stage) newGame.getScene().getWindow();
+            st.close();
             stage.showAndWait();
         }catch (IOException e) {
             e.printStackTrace();
