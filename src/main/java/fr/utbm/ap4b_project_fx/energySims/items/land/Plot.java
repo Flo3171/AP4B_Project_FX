@@ -189,6 +189,7 @@ public class Plot {
 
     public void dry(){
         this.type = PlotType.GRASS;
+        this.buildable = true;
     }
 
     public double getPollution(){
