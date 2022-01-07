@@ -529,9 +529,6 @@ public class GameBoard implements Initializable {
        switch (type)
        {
            case HOUSE:
-              /* Label l10=new Label();
-               l10.setText("HOUSE");
-               Grid.add(l10,pos.getX(),pos.getY());*/
 
                ImageView img1 = new ImageView(url+"\\src\\main\\resources\\images\\house.png");
                img1.setId("house");
@@ -643,9 +640,7 @@ public class GameBoard implements Initializable {
 
        }
    }
-
-
-
+   
     @FXML
    void getGridSize(){
        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -654,16 +649,6 @@ public class GameBoard implements Initializable {
         maxHeight = ((Grid.getMaxHeight())/14);
         maxWidth = ((Grid.getMaxWidth())/26);
    }
-    /*
-   @FXML
-   void test(){
-       //e.getEventType();
-       //System.out.println(e.getSource());
-       System.out.println(Grid.onMouseClickedProperty());
-   }*/
-
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -673,32 +658,4 @@ public class GameBoard implements Initializable {
 
 
     }
-
-
-
-   /* public Button witchSlot(Button btn){
-        if(btn.equals(b1)){
-            return
-        }
-    }*/
-
-    /*private class MyEventHandler implements EventHandler<Event>{
-        @Override
-        public void handle(Event evt) {
-            System.out.println(((Control)evt.getSource()).getId());
-        }*/
-/*
-    public static <T extends Node> T getNode(Node root, String id) {
-        final Node node = root.lookup(id);
-        if (node == null) {
-            throw new NullPointerException(
-                    "cannot find child node fx:id for argument: " + id);
-        }/*  www .  j  av a2 s . c  o  m
-
-        return (T) node;
-    }
-
-*/
-
-
 }
