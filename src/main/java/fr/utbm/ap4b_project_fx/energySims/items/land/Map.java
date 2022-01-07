@@ -162,7 +162,7 @@ public class Map {
      *                  False else
      */
     public synchronized boolean build(Point position, ConstructionType constructionType) {
-        if (!((constructionType != ConstructionType.TREE && constructionType  != ConstructionType.PYLON) && !this.isRoadAround(position))){
+        if (constructionType == ConstructionType.TREE || constructionType  == ConstructionType.PYLON || this.isRoadAround(position)){
             boolean result = this.casesTable[position.getX()][position.getY()].build(constructionType, this.inventory);
             this.updateNetwork();
             return result;

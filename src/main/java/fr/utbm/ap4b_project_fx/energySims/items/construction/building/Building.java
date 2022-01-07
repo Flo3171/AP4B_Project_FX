@@ -54,7 +54,7 @@ public class Building extends Construction implements Runnable {
 
     protected synchronized void produce(){
 
-        if (this.getAvailableElectricity() + this.buildingParameter.getElectricityProduction() >= 0 && this.inventory.useResource(this.buildingParameter.getInput())){
+        if (this.pylonLink != null && this.getAvailableElectricity() + this.buildingParameter.getElectricityProduction() >= 0 && this.inventory.useResource(this.buildingParameter.getInput())){
             this.pylonLink.addElectricity(this.buildingParameter.getElectricityProduction());
             this.inventory.addResource(this.buildingParameter.getOutput());
             System.out.println(this + " Consume : " + this.buildingParameter.getInput().toString() + " Produce : " + this.buildingParameter.getOutput() + " Electricity : " + this.buildingParameter.getElectricityProduction());
