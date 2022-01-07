@@ -183,65 +183,8 @@ public class GameBoard implements Initializable {
 
             if(contructionMode==true)
             {
-                /*
-                Stage stage =new Stage();
-                Label label = new Label();
-                FlowPane root = new FlowPane();
 
-                ChoiceBox choiceBox = new ChoiceBox();
-                choiceBox.setValue("HOUSE");
-
-                choiceBox.setItems(FXCollections.observableArrayList("TREE", "PYLON", "PIPE", "ROAD", "HOUSE", "NUCLEAR_PLANT", "COAL_PLANT","GAZ_PLANT", "OIL_PLANT", "WINDMILL", "SOLAR_PANEL", "DRILLER"));
-                Button button=new Button();
-                button.setText("validate");
-                button.setVisible(true);
-
-
-                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WOOD));
-                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COPPER));
-                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COAL));
-                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WATER));
-                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.IRON));
-                MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.URANIUM));
-                button.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override public void handle(ActionEvent e) {
-                        String choiceValue=choiceBox.getValue().toString();
-                        ConstructionType type=ConstructionType.valueOf(choiceValue);
-                        System.out.printf(type.toString());
-                        buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
-                        stage.close();
-                        wood.setText(MainMenu.getMap().getInventory().toString());
-                    }
-
-                });
-
-                root.setPadding(new Insets(10));
-
-                root.getChildren().addAll(label, choiceBox, button);
-                root.setPadding(new Insets(10));
-                root.setHgap(10);
-
-
-
-
-                Scene scene = new Scene(root, 400, 200);
-
-                stage.setTitle("ff");
-                stage.setScene(scene);
-                stage.show();
-                */
                 ConstructionType type = typeConstruct();
-                if (type != null){
-                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WOOD));
-                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COPPER));
-                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.COAL));
-                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.WATER));
-                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.IRON));
-                    MainMenu.getMap().getInventory().addResource(new Resource(10000, ResourceType.URANIUM));
-
-                    buildingBuilder(MainMenu.getMap(),new Point(colIndex,rowIndex),type);
-
-                }
 
             }
             else if (destructionMode==true)
@@ -259,7 +202,7 @@ public class GameBoard implements Initializable {
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="pylon");
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="tree");
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="Route");
-
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="solar");
 
             }
             updateInfo();
@@ -615,7 +558,7 @@ public class GameBoard implements Initializable {
 
            case SOLAR_PANEL:
                ImageView img4 = new ImageView(url+"\\src\\main\\resources\\images\\solar.png");
-               img4.setId("nuclear");
+               img4.setId("solar");
                img4.setFitHeight(maxHeight);
                img4.setFitWidth(maxWidth);
                img4.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
