@@ -8,7 +8,7 @@ import fr.utbm.ap4b_project_fx.energySims.items.ressource.ResourceType;
 public class Tree extends Construction{
 
     public Tree(Point position){
-        super(position, ConstructionType.TREE, new Resource(2, ResourceType.WOOD));
+        super(position, ConstructionType.TREE, new Resource(1, ResourceType.WOOD));
     }
 
     @Override
@@ -24,5 +24,10 @@ public class Tree extends Construction{
     @Override
     public boolean destroy() {
         return true;
+    }
+
+    @Override
+    public Resource getDestructionReward() {
+        return new Resource(11, ResourceType.WOOD);
     }
 }

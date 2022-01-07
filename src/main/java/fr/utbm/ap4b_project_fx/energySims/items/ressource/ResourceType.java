@@ -2,15 +2,12 @@ package fr.utbm.ap4b_project_fx.energySims.items.ressource;
 
 public enum ResourceType {
     NONE,
+    WOOD,
     COAL,
     IRON,
     COPPER,
     URANIUM,
-    OIL,
     WATER,
-    GAS,
-    WOOD,
-    EUROS,
     SATISFACTION;
 
     @Override
@@ -20,11 +17,8 @@ public enum ResourceType {
             case IRON -> {return "Iron";}
             case COPPER -> {return "Copper";}
             case URANIUM -> {return "Uranium";}
-            case OIL -> {return "Oil";}
             case WATER -> {return "Water";}
-            case GAS -> {return "Gas";}
-            case WOOD -> {return "Wood";}
-            case EUROS -> {return "Euros";}
+            case WOOD -> {return "WOOD";}
             case SATISFACTION -> {return "Satisfaction";}
 
         }
@@ -40,16 +34,10 @@ public enum ResourceType {
             return COPPER;
         } else if (name.equals(URANIUM.toString())){
             return URANIUM;
-        } else if (name.equals(OIL.toString())){
-            return OIL;
         } else if (name.equals(WATER.toString())){
             return WATER;
-        } else if (name.equals(GAS.toString())){
-            return GAS;
         } else if (name.equals(WOOD.toString())){
             return WOOD;
-        } else if (name.equals(EUROS.toString())){
-            return EUROS;
         } else if (name.equals(SATISFACTION.toString())){
             return SATISFACTION;
         }

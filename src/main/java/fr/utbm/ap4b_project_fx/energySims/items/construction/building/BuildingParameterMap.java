@@ -37,33 +37,13 @@ public class BuildingParameterMap {
         ));
 
         this.parameter.put(ConstructionType.COAL_PLANT, new BuildingParameter(
-                new Resource(20, ResourceType.IRON),
+                new Resource(10, ResourceType.IRON),
                 10,
-                20,
-                new Resource(10, ResourceType.COAL),
+                10,
+                new Resource(1, ResourceType.COAL),
                 new Resource(0, ResourceType.NONE),
                 0,
                 5
-        ));
-
-        this.parameter.put(ConstructionType.GAZ_PLANT, new BuildingParameter(
-                new Resource(40, ResourceType.IRON),
-                8,
-                30,
-                new Resource(10, ResourceType.GAS),
-                new Resource(0, ResourceType.NONE),
-                0,
-                6
-        ));
-
-        this.parameter.put(ConstructionType.OIL_PLANT, new BuildingParameter(
-                new Resource(100, ResourceType.COPPER),
-                20,
-                60,
-                new Resource(10, ResourceType.OIL),
-                new Resource(0, ResourceType.NONE),
-                0,
-                10
         ));
 
         this.parameter.put(ConstructionType.WINDMILL, new BuildingParameter(
@@ -89,7 +69,7 @@ public class BuildingParameterMap {
         this.parameter.put(ConstructionType.DRILLER, new BuildingParameter(
                 new Resource(10, ResourceType.IRON),
                 0,
-                -20,
+                0,
                 new Resource(0, ResourceType.NONE),
                 new Resource(0, ResourceType.NONE),
                 0,

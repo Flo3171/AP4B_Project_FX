@@ -19,7 +19,7 @@ public class Pylon extends Construction {
     private ElectricalNetwork network;
 
     public Pylon(Point position){
-        super(position, ConstructionType.PYLON, new Resource(2, ResourceType.COPPER));
+        super(position, ConstructionType.PYLON, new Resource(2, ResourceType.WOOD));
         this.pylonNeighbours = new ArrayList<>();
         this.buildingNeighbours = new ArrayList<>();
 

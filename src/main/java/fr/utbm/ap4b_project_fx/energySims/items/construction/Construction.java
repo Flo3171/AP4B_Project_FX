@@ -30,7 +30,7 @@ public abstract class Construction{
     }
 
     public Resource getDestructionReward(){
-        return new Resource(this.constructionCost.getAmount()/2, this.constructionCost.getType());
+        return new Resource(this.constructionCost.getAmount(), this.constructionCost.getType());
     }
 
     @Override
