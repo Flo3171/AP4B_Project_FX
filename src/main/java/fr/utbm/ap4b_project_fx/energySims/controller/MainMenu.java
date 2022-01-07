@@ -18,21 +18,48 @@ import java.io.IOException;
 import java.lang.System;
 import java.net.URL;
 
+/**
+ * The class MainMenu is the class controller of the MainMenu.fxml file
+ * it displays the main menu to the user and allows him to launch the game
+ *
+ * @see Map
+ * @see GameBoard
+ * @author Célian Humbert
+ * @version 1.0
+ */
 
 public class MainMenu {
 
     String url = new File( "" ).getAbsolutePath();
 private static Map m=new Map(new Point(26, 14),false);
 
+    /**
+     * The button to load an existing game
+     */
     @FXML
     private Button loadGame;
 
+
+    /**
+     * The button to launch a new game
+     */
     @FXML
     private Button newGame;
-    
+
+    /**
+     * The String to registre the path to the selected file
+     */
     @FXML
     private String Path;
 
+
+
+    /**
+     * Action to do when the newGame button is pressed
+     * load the GameBoard.fxlm file and display the mpa generated
+     * by the map class
+     * @see Map
+     */
     @FXML
     void launch() {
         Point size=new Point("0,0");
@@ -61,6 +88,14 @@ private static Map m=new Map(new Point(26, 14),false);
             e.printStackTrace();
     }
     }
+    /**
+     * Action to do when the loadGame button is pressed
+     * display a file chooser to the user to let him choose a previously
+     * saved game file
+     * load the GameBoard.fxlm file and display the map generated
+     * by the map class using the saved file
+     * @see Map
+     */
 
     @FXML
     public void loads(ActionEvent event) throws IOException {
@@ -100,6 +135,12 @@ private static Map m=new Map(new Point(26, 14),false);
         }
     }
 
+
+    /**
+     *Used to return the map in the GameBoard calss
+     *
+     * @see GameBoard
+     */
 public static Map getMap(){
         return m;
 }
