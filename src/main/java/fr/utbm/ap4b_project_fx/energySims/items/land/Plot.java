@@ -64,7 +64,7 @@ public class Plot {
             }
             case 15, 16, 17 -> {
                 this.setUndergroundResources(new Resource(200, ResourceType.COPPER));
-                this.type = PlotType.COAL_DEPOSIT;
+                this.type = PlotType.COPPER_DEPOSIT;
             }
             case 18, 19 -> {
                 this.setUndergroundResources(new Resource(200, ResourceType.URANIUM));
