@@ -1,5 +1,6 @@
 package fr.utbm.ap4b_project_fx.energySims.controller;
 
+
 import fr.utbm.ap4b_project_fx.energySims.items.construction.ConstructionType;
 import fr.utbm.ap4b_project_fx.energySims.items.land.Map;
 import fr.utbm.ap4b_project_fx.energySims.items.land.PlotType;
@@ -116,8 +117,6 @@ public class GameBoard implements Initializable {
     double maxWidth ;
 
 
-    @FXML
-    private BorderPane scene;
 
     @FXML
     void menu(KeyEvent event) throws IOException {
@@ -129,7 +128,6 @@ public class GameBoard implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
                 Parent root = fxmlLoader.load();
 
-                InGameMenu menu = fxmlLoader.getController();
 
                 Stage stage = new Stage();
 
@@ -166,8 +164,6 @@ public class GameBoard implements Initializable {
                 ChoiceBox choiceBox = new ChoiceBox();
                 choiceBox.setValue("HOUSE");
 
-                //choiceBox.getItems().setAll(ConstructionType.values());
-               // ObservableList<?> languages = FXCollections.observableArrayList("TREE", "PYLON", "PIPE", "ROAD", "HOUSE", "NUCLEAR_PLANT", "COAL_PLANT", "GAZ_PLANT", "OIL_PLANT", "WINDMILL", "SOLAR_PANEL", "DRILLER");
                 choiceBox.setItems(FXCollections.observableArrayList("TREE", "PYLON", "PIPE", "ROAD", "HOUSE", "NUCLEAR_PLANT", "COAL_PLANT","GAZ_PLANT", "OIL_PLANT", "WINDMILL", "SOLAR_PANEL", "DRILLER"));
                 Button button=new Button();
                 button.setText("validate");
@@ -222,6 +218,7 @@ public class GameBoard implements Initializable {
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="drill");
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="pylon");
                Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="tree");
+               Grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == rowIndex && GridPane.getColumnIndex(node)==colIndex && node.getId()=="Route");
 
 
             }
@@ -338,7 +335,6 @@ public class GameBoard implements Initializable {
 
 
    void mapDisplayer(Map m){
-       System.out.printf(m.toString());
        Point g =m.getMapSize();
        int w=g.getX();
        int h = g.getY();
@@ -441,7 +437,7 @@ public class GameBoard implements Initializable {
 
             default:
                 Label l8=new Label();
-                l8.setText("OSKOURALED");
+                l8.setText("ERROR");
                 Grid.add(l8,i,j);;
             }
        }
@@ -485,6 +481,13 @@ public class GameBoard implements Initializable {
                break;
 
            case SOLAR_PANEL:
+               ImageView img4 = new ImageView(url+"\\src\\main\\resources\\images\\solar.png");
+               img4.setId("nuclear");
+               img4.setFitHeight(maxHeight);
+               img4.setFitWidth(maxWidth);
+               img4.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img4,pos.getX(),pos.getY());
+               break;
 
            case NUCLEAR_PLANT:
                ImageView img6 = new ImageView(url+"\\src\\main\\resources\\images\\nuclear.png");
@@ -515,7 +518,13 @@ public class GameBoard implements Initializable {
                break;
 
            case ROAD:
-
+               ImageView img8 = new ImageView(url+"\\src\\main\\resources\\images\\Route.png");
+               img8.setId("Route");
+               img8.setFitHeight(maxHeight);
+               img8.setFitWidth(maxWidth);
+               img8.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+               Grid.add(img8,pos.getX(),pos.getY());
+               break;
            case TREE:
                ImageView img9 = new ImageView(url+"\\src\\main\\resources\\images\\Tree.png");
                img9.setId("tree");
@@ -525,9 +534,7 @@ public class GameBoard implements Initializable {
                Grid.add(img9,pos.getX(),pos.getY());
 
            default:
-               Label l11=new Label();
-               l11.setText("FORFAIT");
-               Grid.add(l11,pos.getX(),pos.getY());
+
        }
    }
 
