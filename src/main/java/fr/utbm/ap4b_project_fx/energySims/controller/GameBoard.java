@@ -34,6 +34,7 @@ import javafx.scene.layout.GridPane;
 
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -232,50 +233,83 @@ public class GameBoard implements Initializable {
         final Node source = (Node) event.getSource();
         String id = source.getId();
 
-        if(id.equals("BCoal"))
+        if(id.equals("BCoal") && !CoalConstuct) {
             CoalConstuct = true;
-        else
+            BCoal.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             CoalConstuct = false;
-        if(id.equals("BDriller"))
+            BCoal.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BDriller") && !DrillerConstuct) {
             DrillerConstuct = true;
-        else
+            BDriller.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             DrillerConstuct = false;
-        if(id.equals("BFarm"))
+            BDriller.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BFarm") && !FarmConstuct) {
             FarmConstuct = true;
-        else
+            BFarm.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             FarmConstuct = false;
-        if(id.equals("BHouse"))
+            BFarm.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BHouse") && !HouseConstuct) {
             HouseConstuct = true;
-        else
+            BHouse.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             HouseConstuct = false;
-        if(id.equals("BNuclear"))
+            BHouse.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BNuclear") && !NuclearConstuct) {
             NuclearConstuct = true;
-        else
+            BNuclear.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             NuclearConstuct = false;
-        if(id.equals("BPark"))
+            BNuclear.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BPark") && !ParkConstuct) {
             ParkConstuct = true;
-        else
+            BPark.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             ParkConstuct = false;
-        if(id.equals("BPylon"))
+            BPark.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BPylon") && !PylonConstuct) {
             PylonConstuct = true;
-        else
+            BPylon.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             PylonConstuct = false;
-        if(id.equals("BRoad"))
+            BPylon.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BRoad") && !RoadConstuct) {
             RoadConstuct = true;
-        else
+            BRoad.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             RoadConstuct = false;
-        if(id.equals("BSolar"))
+            BRoad.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BSolar") && !SolarConstuct) {
             SolarConstuct = true;
-        else
-            SolarConstuct = false ;
-        if(id.equals("BTree"))
+            BSolar.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
+            SolarConstuct = false;
+            BSolar.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BTree") && !TreeConstuct) {
             TreeConstuct = true;
-        else
+            BTree.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             TreeConstuct = false;
-        if(id.equals("BWind"))
+            BTree.setStyle("-fx-background-color: #cefffd ;");
+        }
+        if(id.equals("BWind") && !WindConstuct) {
             WindConstuct = true;
-        else
+            BWind.setStyle("-fx-background-color: #2bef4f ;");
+        }else {
             WindConstuct = false;
+            BWind.setStyle("-fx-background-color: #cefffd ;");
+        }
     }
 
     @FXML
