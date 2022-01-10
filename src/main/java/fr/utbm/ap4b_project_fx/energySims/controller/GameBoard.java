@@ -654,7 +654,6 @@ public class GameBoard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         getGridSize();
-        Grid.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
 
 
     }
